@@ -1,4 +1,3 @@
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -35,3 +34,36 @@ yarn-error.log*
 # vercel
 .vercel
 .env*.local
+
+# Node modules
+node_modules/
+
+# Build files
+.next/
+out/
+build/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Large data files
+data/data.sql
+data/data.zip
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
