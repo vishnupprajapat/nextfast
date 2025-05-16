@@ -1,15 +1,15 @@
 import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis"; // see below for cloudflare and fastly adapters
 
-if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+if (!process.env.KV_REST_API_KV_URL || !process.env.KV_REST_API_KV_REST_API_TOKEN) {
   throw new Error(
-    "Please link a Vercel KV instance or populate `KV_REST_API_URL` and `KV_REST_API_TOKEN`",
+    "Please link a Vercel KV instance or populate `KV_REST_API_KV_URL` and `KV_REST_API_KV_REST_API_TOKEN`",
   );
 }
 
 const redis = new Redis({
-  url: process.env.KV_REST_API_URL,
-  token: process.env.KV_REST_API_TOKEN,
+  url: process.env.KV_REST_API_KV_URL,
+  token: process.env.KV_REST_API_KV_REST_API_TOKEN,
 });
 
 export const authRateLimit = new Ratelimit({
