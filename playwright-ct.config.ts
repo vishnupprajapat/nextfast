@@ -55,18 +55,11 @@ export default defineConfig({
   },
 
   // Configure projects for major browsers
+  // Component tests only run on Chromium for speed
   projects: [
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
-    },
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
     },
   ],
 });

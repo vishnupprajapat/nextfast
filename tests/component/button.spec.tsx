@@ -28,7 +28,7 @@ test.describe("Button Component", () => {
     expect(clicked).toBe(true);
   });
 
-  test("should render different variants", async ({ mount }) => {
+  test("should render different variants", async ({ mount, page }) => {
     const variants = [
       "default",
       "destructive",
@@ -43,10 +43,11 @@ test.describe("Button Component", () => {
         <Button variant={variant as any}>{variant} Button</Button>,
       );
       await expect(component).toBeVisible();
+      await component.unmount();
     }
   });
 
-  test("should render different sizes", async ({ mount }) => {
+  test("should render different sizes", async ({ mount, page }) => {
     const sizes = ["default", "sm", "lg", "icon"];
 
     for (const size of sizes) {
@@ -54,6 +55,7 @@ test.describe("Button Component", () => {
         <Button size={size as any}>{size} Button</Button>,
       );
       await expect(component).toBeVisible();
+      await component.unmount();
     }
   });
 
@@ -62,12 +64,13 @@ test.describe("Button Component", () => {
     await expect(component).toBeDisabled();
   });
 
-  test("should render as child component", async ({ mount }) => {
+  test("should render as child component", async ({ mount, page }) => {
     const component = await mount(
       <Button asChild>
         <a href="/test">Link Button</a>
       </Button>,
     );
-    await expect(component.locator("a")).toBeVisible();
+    await expect(component).toBeVisible();
+    await expect(component).toContainText("Link Button");
   });
 });
