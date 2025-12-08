@@ -1,5 +1,13 @@
 # Validate branch name
 .husky/validate-branch-name.sh
 
+# Run Biome checks
+echo "Running Biome checks..."
+pnpm check || exit 1
+
+# Run TypeScript checks
+echo "Running TypeScript checks..."
+pnpm typecheck || exit 1
+
 # Run lint-staged for formatting and linting
 npx lint-staged
