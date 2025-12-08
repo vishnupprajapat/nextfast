@@ -1,3 +1,4 @@
+import path from "node:path";
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
 
 /**
@@ -42,21 +43,23 @@ export default defineConfig({
 
     // Base URL for component tests
     ctPort: 3100,
+
+    // Vite configuration for component tests
+    ctViteConfig: {
+      resolve: {
+        alias: {
+          "@": path.resolve(__dirname, "./src"),
+        },
+      },
+    },
   },
 
   // Configure projects for major browsers
+  // Component tests only run on Chromium for speed
   projects: [
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
-    },
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
     },
   ],
 });
