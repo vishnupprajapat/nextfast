@@ -148,11 +148,11 @@ jobs:
             const fs = require('fs');
             const path = require('path');
             
-            let comment = '## í¾­ Playwright Test Results\n\n';
+            let comment = '## ðŸŽ­ Playwright Test Results\n\n';
             comment += '### Test Execution Summary\n';
             comment += '- âœ… E2E Tests: Completed\n';
             comment += '- âœ… Component Tests: Completed\n';
-            comment += '\ní³Š [View detailed report in artifacts](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n';
+            comment += '\nðŸ“Š [View detailed report in artifacts](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n';
             
             github.rest.issues.createComment({
               issue_number: context.issue.number,
