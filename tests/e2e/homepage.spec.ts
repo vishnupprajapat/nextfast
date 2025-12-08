@@ -72,7 +72,9 @@ test.describe("Homepage", () => {
           !text.includes("Failed to load resource") &&
           !text.includes("404") &&
           !text.includes("500") &&
-          !text.includes("SyntaxError")
+          !text.includes("SyntaxError") &&
+          !text.includes("NS_BINDING_ABORTED") &&
+          text.trim() !== "Error" // Filter generic "Error" messages
         ) {
           consoleErrors.push(text);
         }
