@@ -7,7 +7,19 @@
     "defaultBranch": "master"
   },
   "files": {
-    "ignoreUnknown": true
+    "ignoreUnknown": true,
+    "includes": [
+      "**",
+      "!!**/node_modules",
+      "!!**/.next",
+      "!!**/dist",
+      "!!**/build",
+      "!!**/.pnpm-store",
+      "!!**/.vercel",
+      "!!**/coverage",
+      "!!**/*.min.js",
+      "!!**/pnpm-lock.yaml"
+    ]
   },
   "formatter": {
     "enabled": true,
