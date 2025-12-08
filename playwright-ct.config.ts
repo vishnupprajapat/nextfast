@@ -1,3 +1,4 @@
+import path from "node:path";
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
 
 /**
@@ -42,6 +43,15 @@ export default defineConfig({
 
     // Base URL for component tests
     ctPort: 3100,
+
+    // Vite configuration for component tests
+    ctViteConfig: {
+      resolve: {
+        alias: {
+          "@": path.resolve(__dirname, "./src"),
+        },
+      },
+    },
   },
 
   // Configure projects for major browsers
