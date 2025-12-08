@@ -1,0 +1,24 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/mcp-config.schema.json",
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@executeautomation/playwright-mcp-server"],
+      "description": "Playwright MCP Server for AI-powered test generation and debugging",
+      "capabilities": {
+        "generateTests": true,
+        "runTests": true,
+        "debugTests": true,
+        "generateSelectors": true,
+        "captureScreenshots": true,
+        "recordTraces": true
+      },
+      "settings": {
+        "testDirectory": "./tests",
+        "configFile": "./playwright.config.ts",
+        "browsers": ["chromium", "firefox", "webkit"],
+        "baseURL": "http://localhost:3000"
+      }
+    }
+  }
+}

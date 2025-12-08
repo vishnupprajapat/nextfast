@@ -1,7 +1,7 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { Suspense } from "react";
-import { CartItems, TotalCost } from "./dynamic";
 import { PlaceOrderAuth } from "../auth.server";
+import { CartItems, TotalCost } from "./dynamic";
 
 export const metadata: Metadata = {
   title: "Order",
@@ -11,7 +11,7 @@ export default async function Page() {
   return (
     <main className="min-h-screen sm:p-4">
       <div className="container mx-auto p-1 sm:p-3">
-        <div className="flex items-center justify-between border-b border-gray-200">
+        <div className="flex items-center justify-between border-gray-200 border-b">
           <h1 className="text-2xl text-accent1">Order</h1>
         </div>
 
@@ -30,7 +30,7 @@ export default async function Page() {
                   <TotalCost />
                 </Suspense>
               </p>
-              <p className="text-sm text-gray-500">
+              <p className="text-gray-500 text-sm">
                 Applicable shipping and tax will be added.
               </p>
             </div>

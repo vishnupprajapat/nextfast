@@ -1,12 +1,12 @@
-import slugify from "slugify";
-import { products, subcategories } from "../src/db/schema";
-import { db } from "../src/db";
 import { eq, isNull } from "drizzle-orm";
+import slugify from "slugify";
+import { db } from "../src/db";
+import { products, subcategories } from "../src/db/schema";
 
-const readline = require("readline");
-const fs = require("fs");
+const readline = require("node:readline");
+const fs = require("node:fs");
 
-const getEmptySubcategories = async () => {
+const _getEmptySubcategories = async () => {
   const subcategoriesWithoutProducts = await db
     .select()
     .from(subcategories)
@@ -16,7 +16,7 @@ const getEmptySubcategories = async () => {
   return subcategoriesWithoutProducts.map((s) => s.subcategories.slug);
 };
 
-function getRandomObjects(arr: any[], count: number) {
+function _getRandomObjects(arr: any[], count: number) {
   const result = [];
   const takenIndices = new Set();
   const arrLength = arr.length;
@@ -33,7 +33,7 @@ function getRandomObjects(arr: any[], count: number) {
   return result;
 }
 
-const getBody = async () => {
+const _getBody = async () => {
   const fileStream = fs.createReadStream("scripts/out.jsonl");
   const rl = readline.createInterface({
     input: fileStream,
@@ -52,7 +52,7 @@ const getBody = async () => {
 
       const productsToAdd = products.map(
         (product: { name: string; description: string }) => {
-          const price = parseFloat((Math.random() * 20 + 5).toFixed(1));
+          const price = Number.parseFloat((Math.random() * 20 + 5).toFixed(1));
           return {
             slug: slugify(product.name, { lower: true }),
             name: product.name,
@@ -65,7 +65,7 @@ const getBody = async () => {
       body.push(...productsToAdd);
     } catch (err) {
       console.error("Error parsing JSON:", err);
-      fs.appendFile("scripts/errors.txt", line + "\n", (err: any) => {
+      fs.appendFile("scripts/errors.txt", `${line}\n`, (err: any) => {
         if (err) {
           console.error(err);
           return;
@@ -110,7 +110,7 @@ const getBody = async () => {
 
 // getBody();
 
-const duplicateProducts = async () => {
+const _duplicateProducts = async () => {
   for (let i = 0; i < 13; i += 1) {
     const p = await db
       .select()
@@ -121,8 +121,8 @@ const duplicateProducts = async () => {
     const productsToAdd = p.map((product) => {
       return {
         ...product,
-        name: product.name + " V2",
-        slug: product.slug + "-v2",
+        name: `${product.name} V2`,
+        slug: `${product.slug}-v2`,
       };
     });
 

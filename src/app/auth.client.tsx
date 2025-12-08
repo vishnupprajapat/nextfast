@@ -1,14 +1,14 @@
 "use client";
+import { useActionState } from "react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ActionState } from "@/lib/middleware";
+import type { ActionState } from "@/lib/middleware";
 import { signIn, signUp } from "./(login)/actions";
-import { useActionState } from "react";
-import { Button } from "@/components/ui/button";
 
 export function LoginForm() {
   const [signInState, signInFormAction, signInPending] = useActionState<
@@ -58,7 +58,7 @@ export function LoginForm() {
 
         <Button
           type="submit"
-          className="rounded-[1px] bg-accent1 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-accent1 focus:outline-none focus:ring-2 focus:ring-accent1 focus:ring-offset-2"
+          className="rounded-[1px] bg-accent1 px-4 py-2 font-semibold text-white text-xs shadow-sm hover:bg-accent1 focus:outline-none focus:ring-2 focus:ring-accent1 focus:ring-offset-2"
           disabled={pending}
           formAction={signInFormAction}
         >
@@ -68,7 +68,7 @@ export function LoginForm() {
         <Button
           type="submit"
           variant={"ghost"}
-          className="rounded-[2px] border-[1px] border-accent1 bg-white px-4 py-2 text-xs font-semibold text-accent1"
+          className="rounded-[2px] border-[1px] border-accent1 bg-white px-4 py-2 font-semibold text-accent1 text-xs"
           disabled={pending}
           formAction={signUpFormAction}
         >
@@ -76,7 +76,7 @@ export function LoginForm() {
         </Button>
       </div>
       {state?.error && (
-        <div className="text-sm text-red-500">{state.error}</div>
+        <div className="text-red-500 text-sm">{state.error}</div>
       )}
     </form>
   );
@@ -88,11 +88,11 @@ export function SignInSignUp() {
       <PopoverTrigger className="flex flex-row items-center gap-1">
         Log in{" "}
         <svg viewBox="0 0 10 6" className="h-[6px] w-[10px]">
-          <polygon points="0,0 5,6 10,0"></polygon>
+          <polygon points="0,0 5,6 10,0" />
         </svg>
       </PopoverTrigger>
       <PopoverContent className="px-8 py-4">
-        <span className="text-sm font-semibold text-accent1">Log in</span>
+        <span className="font-semibold text-accent1 text-sm">Log in</span>
         <LoginForm />
       </PopoverContent>
     </Popover>
@@ -107,7 +107,7 @@ export function SignOut(props: { username: string }) {
       <PopoverTrigger className="flex flex-row items-center gap-1">
         {props.username}{" "}
         <svg viewBox="0 0 10 6" className="h-[6px] w-[10px]">
-          <polygon points="0,0 5,6 10,0"></polygon>
+          <polygon points="0,0 5,6 10,0" />
         </svg>
       </PopoverTrigger>
       <PopoverContent className="flex w-32 flex-col items-center px-8 py-4">
@@ -115,7 +115,7 @@ export function SignOut(props: { username: string }) {
           <Button
             formAction={signOut}
             variant={"ghost"}
-            className="rounded-[2px] border-[1px] border-accent1 bg-white px-4 py-2 text-xs font-semibold text-accent1"
+            className="rounded-[2px] border-[1px] border-accent1 bg-white px-4 py-2 font-semibold text-accent1 text-xs"
           >
             {"Sign Out"}
           </Button>

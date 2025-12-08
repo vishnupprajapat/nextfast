@@ -1,13 +1,13 @@
 "use server";
 
-import { z } from "zod";
 import { eq } from "drizzle-orm";
 import { cookies, headers } from "next/headers";
-import { validatedAction } from "@/lib/middleware";
+import { z } from "zod";
 import { db } from "@/db";
-import { NewUser, users } from "@/db/schema";
-import { comparePasswords, hashPassword, setSession } from "@/lib/session";
+import { type NewUser, users } from "@/db/schema";
+import { validatedAction } from "@/lib/middleware";
 import { authRateLimit, signUpRateLimit } from "@/lib/rate-limit";
+import { comparePasswords, hashPassword, setSession } from "@/lib/session";
 
 const authSchema = z.object({
   username: z.string().min(1),

@@ -1,9 +1,8 @@
+import Image from "next/image";
 import { Link } from "@/components/ui/link";
 import { db } from "@/db";
 import { collections } from "@/db/schema";
 import { getCollectionDetails } from "@/lib/queries";
-
-import Image from "next/image";
 
 export async function generateStaticParams() {
   return await db.select({ collection: collections.slug }).from(collections);
@@ -23,7 +22,7 @@ export default async function Home(props: {
     <div className="w-full p-4">
       {collections.map((collection) => (
         <div key={collection.name}>
-          <h2 className="text-xl font-semibold">{collection.name}</h2>
+          <h2 className="font-semibold text-xl">{collection.name}</h2>
           <div className="flex flex-row flex-wrap justify-center gap-2 border-b-2 py-4 sm:justify-start">
             {collection.categories.map((category) => (
               <Link

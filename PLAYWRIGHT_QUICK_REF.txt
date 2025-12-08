@@ -1,0 +1,205 @@
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                          ┃
+┃      🎭 PLAYWRIGHT TESTING - QUICK REFERENCE 🎭         ┃
+┃                                                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+╔════════════════════════════════════════════════════════╗
+║  📦 INSTALLATION & SETUP                               ║
+╚════════════════════════════════════════════════════════╝
+
+  Install browsers (first time):
+  $ pnpm playwright:install
+
+  Verify installation:
+  $ pnpm exec playwright --version
+
+╔════════════════════════════════════════════════════════╗
+║  🚀 RUNNING TESTS                                      ║
+╚════════════════════════════════════════════════════════╝
+
+  All tests:
+  $ pnpm test
+
+  E2E tests only:
+  $ pnpm test:e2e
+
+  Component tests only:
+  $ pnpm test:ct
+
+  Specific browser:
+  $ pnpm test:chromium
+  $ pnpm test:firefox
+  $ pnpm test:webkit
+
+  Mobile devices:
+  $ pnpm test:mobile
+
+╔════════════════════════════════════════════════════════╗
+║  🔍 DEBUG & DEVELOPMENT                                ║
+╚════════════════════════════════════════════════════════╝
+
+  Interactive UI mode:
+  $ pnpm test:ui
+
+  Debug with Inspector:
+  $ pnpm test:debug
+
+  Run with visible browser:
+  $ pnpm test:headed
+
+  Generate tests by recording:
+  $ pnpm test:codegen
+
+  View last test report:
+  $ pnpm test:report
+
+╔════════════════════════════════════════════════════════╗
+║  📁 FILE LOCATIONS                                     ║
+╚════════════════════════════════════════════════════════╝
+
+  E2E Tests:
+  tests/e2e/*.spec.ts
+
+  Component Tests:
+  tests/component/*.spec.tsx
+
+  Test Utilities:
+  tests/utils/test-helpers.ts
+  tests/utils/page-objects.ts
+
+  Custom Fixtures:
+  tests/fixtures/custom-test.ts
+
+  Configuration:
+  playwright.config.ts       (E2E)
+  playwright-ct.config.ts    (Component)
+  .playwright-mcp.json       (MCP Server)
+
+╔════════════════════════════════════════════════════════╗
+║  🤖 AI-POWERED FEATURES (MCP Server)                   ║
+╚════════════════════════════════════════════════════════╝
+
+  Ask AI to:
+  • "Generate E2E test for [feature]"
+  • "Create component test for [component]"
+  • "Debug the [test name] test"
+  • "Find selector for [element description]"
+  • "Run all admin tests"
+
+╔════════════════════════════════════════════════════════╗
+║  ✅ QUALITY CHECKS                                     ║
+╚════════════════════════════════════════════════════════╝
+
+  Lint all code:
+  $ pnpm lint
+
+  Format all code:
+  $ pnpm format
+
+  Type check:
+  $ pnpm typecheck
+
+  All checks:
+  $ pnpm check
+
+╔════════════════════════════════════════════════════════╗
+║  🔄 CI/CD                                              ║
+╚════════════════════════════════════════════════════════╝
+
+  GitHub Actions workflows:
+  .github/workflows/playwright.yml   (E2E & CT tests)
+  .github/workflows/quality.yml      (Code quality)
+
+  Automatically runs on:
+  • Pull requests
+  • Push to main/master/develop
+
+  View results:
+  • GitHub Actions tab
+  • PR comments
+  • Test artifacts (30 days)
+
+╔════════════════════════════════════════════════════════╗
+║  📚 DOCUMENTATION                                      ║
+╚════════════════════════════════════════════════════════╝
+
+  Complete Setup Guide:
+  PLAYWRIGHT_SETUP.md
+
+  Testing Summary:
+  TESTING_SUMMARY.md
+
+  MCP Server Info:
+  tests/README.md
+
+  Online Docs:
+  https://playwright.dev
+
+╔════════════════════════════════════════════════════════╗
+║  🎯 EXAMPLE TEST STRUCTURE                            ║
+╚════════════════════════════════════════════════════════╝
+
+  import { test, expect } from '@playwright/test';
+
+  test.describe('Feature Name', () => {
+    test.beforeEach(async ({ page }) => {
+      await page.goto('/');
+    });
+
+    test('should do something', async ({ page }) => {
+      const element = page.locator('[data-testid="id"]');
+      await element.click();
+      await expect(element).toBeVisible();
+    });
+  });
+
+╔════════════════════════════════════════════════════════╗
+║  ⚡ BEST PRACTICES                                     ║
+╚════════════════════════════════════════════════════════╝
+
+  ✅ Use data-testid attributes
+  ✅ Write small, focused tests
+  ✅ Use Page Object Models
+  ✅ Mock external APIs
+  ✅ Run tests in parallel
+  ✅ Review traces on failure
+  ✅ Keep tests independent
+
+╔════════════════════════════════════════════════════════╗
+║  🆘 TROUBLESHOOTING                                    ║
+╚════════════════════════════════════════════════════════╝
+
+  Browsers not installed:
+  $ pnpm playwright:install
+
+  Tests timing out:
+  • Check dev server is running
+  • Increase timeout in config
+  • Use waitForLoadState()
+
+  Flaky tests:
+  • Add explicit waits
+  • Check for race conditions
+  • Use toBeVisible() before actions
+
+  CI failures:
+  • Check environment variables
+  • Review GitHub Actions logs
+  • Download test artifacts
+
+╔════════════════════════════════════════════════════════╗
+║  🎉 READY TO GO!                                       ║
+╚════════════════════════════════════════════════════════╝
+
+  Start with:
+  1. $ pnpm playwright:install
+  2. $ pnpm test:e2e
+  3. $ pnpm test:ui
+  4. Write your own tests!
+
+  Version: Playwright 1.57.0
+  Status: ✅ Production-Ready
+  Integration: ✅ Biome, Git Hooks, CI/CD
+
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛

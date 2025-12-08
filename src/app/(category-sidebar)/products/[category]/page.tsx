@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { Link } from "@/components/ui/link";
 import { notFound } from "next/navigation";
-import { getCategory, getCategoryProductCount } from "@/lib/queries";
+import { Link } from "@/components/ui/link";
 import { db } from "@/db";
 import { categories } from "@/db/schema";
+import { getCategory, getCategoryProductCount } from "@/lib/queries";
 
 export async function generateStaticParams() {
   return await db.select({ category: categories.slug }).from(categories);
@@ -28,14 +28,14 @@ export default async function Page(props: {
   return (
     <div className="container p-4">
       {finalCount && (
-        <h1 className="mb-2 border-b-2 text-sm font-bold">
+        <h1 className="mb-2 border-b-2 font-bold text-sm">
           {finalCount} {finalCount === 1 ? "Product" : "Products"}
         </h1>
       )}
       <div className="space-y-4">
         {cat.subcollections.map((subcollection, index) => (
           <div key={index}>
-            <h2 className="mb-2 border-b-2 text-lg font-semibold">
+            <h2 className="mb-2 border-b-2 font-semibold text-lg">
               {subcollection.name}
             </h2>
             <div className="flex flex-row flex-wrap gap-2">
@@ -60,7 +60,7 @@ export default async function Page(props: {
                       />
                     </div>
                     <div className="flex h-16 flex-grow flex-col items-start py-2">
-                      <div className="text-sm font-medium text-gray-700 group-hover:underline">
+                      <div className="font-medium text-gray-700 text-sm group-hover:underline">
                         {subcategory.name}
                       </div>
                     </div>

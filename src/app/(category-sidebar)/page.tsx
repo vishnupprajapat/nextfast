@@ -1,7 +1,6 @@
+import Image from "next/image";
 import { Link } from "@/components/ui/link";
 import { getCollections, getProductCount } from "@/lib/queries";
-
-import Image from "next/image";
 
 export default async function Home() {
   const [collections, productCount] = await Promise.all([
@@ -12,12 +11,12 @@ export default async function Home() {
 
   return (
     <div className="w-full p-4">
-      <div className="mb-2 w-full flex-grow border-b-[1px] border-accent1 text-sm font-semibold text-black">
+      <div className="mb-2 w-full flex-grow border-accent1 border-b-[1px] font-semibold text-black text-sm">
         Explore {productCount.at(0)?.count.toLocaleString()} products
       </div>
       {collections.map((collection) => (
         <div key={collection.name}>
-          <h2 className="text-xl font-semibold">{collection.name}</h2>
+          <h2 className="font-semibold text-xl">{collection.name}</h2>
           <div className="flex flex-row flex-wrap justify-center gap-2 border-b-2 py-4 sm:justify-start">
             {collection.categories.map((category) => (
               <Link

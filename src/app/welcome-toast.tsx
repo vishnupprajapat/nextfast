@@ -10,7 +10,7 @@ export function WelcomeToast() {
     if (!document.cookie.includes("welcome-toast=3")) {
       toast("🚀 Welcome to NextFaster!", {
         id: "welcome-toast",
-        duration: Infinity,
+        duration: Number.POSITIVE_INFINITY,
         onDismiss: () => {
           document.cookie += "welcome-toast=3;max-age=31536000";
         },
@@ -25,6 +25,7 @@ export function WelcomeToast() {
               href="https://github.com/ethanniser/NextFaster"
               className="font-semibold text-accent1 hover:underline"
               target="_blank"
+              rel="noopener"
             >
               Get the Source
             </a>

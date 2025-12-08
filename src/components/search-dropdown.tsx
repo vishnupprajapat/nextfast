@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { X } from "lucide-react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { Product } from "../db/schema";
-import { Link } from "@/components/ui/link";
 import { useParams, useRouter } from "next/navigation";
-import { ProductSearchResult } from "@/app/api/search/route";
+import { useEffect, useRef, useState } from "react";
+import type { ProductSearchResult } from "@/app/api/search/route";
+import { Input } from "@/components/ui/input";
+import { Link } from "@/components/ui/link";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
+import type { Product } from "../db/schema";
 
 type SearchResult = Product & { href: string };
 
@@ -43,7 +43,7 @@ export function SearchDropdownComponent() {
         setFilteredItems(json as ProductSearchResult);
       });
     }
-  }, [searchTerm, inputRef]);
+  }, [searchTerm]);
 
   const params = useParams();
   useEffect(() => {
@@ -88,7 +88,7 @@ export function SearchDropdownComponent() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownRef]);
+  }, []);
 
   return (
     <div className="font-sans" ref={dropdownRef}>
@@ -107,11 +107,11 @@ export function SearchDropdownComponent() {
               setHighlightedIndex(-1);
             }}
             onKeyDown={handleKeyDown}
-            className="pr-12 font-sans font-medium sm:w-[300px] md:w-[375px]"
+            className="pr-12 font-medium font-sans sm:w-[300px] md:w-[375px]"
           />
           <X
             className={cn(
-              "absolute right-7 top-2 h-5 w-5 text-muted-foreground",
+              "absolute top-2 right-7 h-5 w-5 text-muted-foreground",
               {
                 hidden: !isOpen,
               },
@@ -155,11 +155,11 @@ export function SearchDropdownComponent() {
                 ))
               ) : isLoading ? (
                 <div className="flex h-full items-center justify-center">
-                  <p className="text-sm text-gray-500">Loading...</p>
+                  <p className="text-gray-500 text-sm">Loading...</p>
                 </div>
               ) : (
                 <div className="flex h-full items-center justify-center">
-                  <p className="text-sm text-gray-500">No results found</p>
+                  <p className="text-gray-500 text-sm">No results found</p>
                 </div>
               )}
             </ScrollArea>

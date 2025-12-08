@@ -1,0 +1,27 @@
+node_modules
+.next
+dist
+build
+out
+.vercel
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+drizzle
+*.sql
+.env*
+public
+*.css
+
+# Playwright
+test-results
+playwright-report
+playwright-report-ct
+playwright/.cache
+
+# Sentry
+.sentryclirc
+sentry-debug-*.txt
+*.sentry-build-info.json
+instrumentation.ts
+sentry.*.config.ts

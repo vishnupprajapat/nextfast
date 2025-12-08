@@ -1,17 +1,10 @@
-import { db } from "../src/db";
-import { Effect, Schedule, Console, Cause } from "effect";
-import {
-  products as products_table,
-  categories,
-  subcategories as subcategories_table,
-  subcategories,
-  products,
-  subcollections,
-} from "../src/db/schema";
-import { eq, sql, lt } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
+import { Effect, Schedule } from "effect";
 import OpenAI from "openai";
-import { z } from "zod";
 import slugify from "slugify";
+import { z } from "zod";
+import { db } from "../src/db";
+import { products, subcategories } from "../src/db/schema";
 
 const productValidator = z.object({
   products: z.array(
@@ -23,7 +16,7 @@ const productValidator = z.object({
   ),
 });
 
-const categoryValidator = z.object({
+const _categoryValidator = z.object({
   categories: z.array(
     z.object({
       name: z.string(),
@@ -62,7 +55,7 @@ const makeProductPrompt = (categoryName: string) => `
 
   OUTPUT:`;
 
-const makeCategoryPrompt = (categoryName: string) => `
+const _makeCategoryPrompt = (categoryName: string) => `
   You are given the name of a product category for products in an art supply store.
   Your task is to generate 10 sub-categories. Each sub-category has a name.
 
@@ -215,7 +208,7 @@ const main = Effect.gen(function* () {
             }))
             .map((x) =>
               Effect.tryPromise(() => db.insert(products).values(x)).pipe(
-                Effect.catchAll((e) => Effect.void),
+                Effect.catchAll((_e) => Effect.void),
               ),
             ),
           {

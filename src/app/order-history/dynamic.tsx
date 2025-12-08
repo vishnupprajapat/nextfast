@@ -3,10 +3,10 @@ import { getUser } from "@/lib/queries";
 export async function OrderHistoryDynamic() {
   const user = await getUser();
   return user ? (
-    <div className="border-t border-gray-200 pt-4">
+    <div className="border-gray-200 border-t pt-4">
       <table className="w-full">
         <thead>
-          <tr className="text-left text-sm font-medium text-gray-500">
+          <tr className="text-left font-medium text-gray-500 text-sm">
             <th className="w-1/2 pb-2">Product</th>
             <th className="w-1/4 pb-2">Last Order Date</th>
             <th className="w-1/4 pb-2">Purchase Order</th>

@@ -1,0 +1,2267 @@
+{
+  "meta": {
+    "name": "EzMart Dashboard Design System",
+    "version": "2.0.0",
+    "source": "Comprehensive dashboard screenshot analysis",
+    "intent": "Complete design language and component guidelines enabling AI to precisely recreate this dashboard aesthetic in Next.js/Tailwind projects.",
+    "tone": "Clean, optimistic, data-rich ecommerce admin with warm neutrals and bold accent orange.",
+    "designPhilosophy": "Information-first dashboard that balances density with clarity. Uses warm, approachable neutrals to reduce cognitive load while maintaining professional credibility. Orange accent provides energy and draws attention to actionable items and positive metrics."
+  },
+  "foundations": {
+    "layout": {
+      "description": "Dashboard uses a fixed left sidebar with scrollable main content area. The warm beige background (#F5E7D8) creates a soft, welcoming canvas that reduces eye strain during extended use.",
+      "pageBackgroundColor": "#F5E7D8",
+      "contentBackgroundColor": "#FFFFFF",
+      "pageMaxWidth": 1440,
+      "contentMaxWidth": 1200,
+      "pagePadding": {
+        "desktop": 32,
+        "tablet": 24,
+        "mobile": 16
+      },
+      "grid": {
+        "columns": 12,
+        "gutter": 24,
+        "cardGap": 24,
+        "responsiveBreakpoints": {
+          "mobile": 640,
+          "tablet": 768,
+          "desktop": 1024,
+          "wide": 1280
+        }
+      },
+      "sidebar": {
+        "width": 280,
+        "background": "#FFFFFF",
+        "position": "fixed",
+        "padding": 24,
+        "shadow": "2px 0 12px rgba(0, 0, 0, 0.04)"
+      },
+      "mainContent": {
+        "marginLeft": 280,
+        "padding": 32,
+        "maxWidth": "calc(100vw - 280px)"
+      },
+      "elevation": {
+        "none": "none",
+        "subtle": "0 1px 2px rgba(0, 0, 0, 0.04)",
+        "card": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "cardHover": "0 8px 24px rgba(0, 0, 0, 0.12)",
+        "modal": "0 20px 60px rgba(0, 0, 0, 0.15)",
+        "cardBorderRadius": 16
+      }
+    },
+    "color": {
+      "description": "Warm neutral canvas with vibrant orange as the primary action color. The palette creates a friendly, energetic atmosphere while maintaining professional credibility. Use high contrast sparingly—only for critical metrics and primary CTAs.",
+      "palette": {
+        "background": {
+          "canvas": "#F5E7D8",
+          "canvasSubtle": "#EDE3D5",
+          "surface": "#FFFFFF",
+          "surfaceHover": "#FAFAFA",
+          "surfaceSubtle": "#FFF9F5",
+          "surfaceElevated": "#FFFFFF"
+        },
+        "borders": {
+          "subtle": "#F0E8DC",
+          "default": "#E5DDD1",
+          "medium": "#D4CAB8",
+          "strong": "#9E9383"
+        },
+        "primary": {
+          "50": "#FFF7ED",
+          "100": "#FFEDD5",
+          "200": "#FED7AA",
+          "300": "#FDBA74",
+          "400": "#FB923C",
+          "500": "#FF8A1F",
+          "600": "#EA580C",
+          "700": "#C2410C",
+          "800": "#9A3412",
+          "900": "#7C2D12",
+          "DEFAULT": "#FF8A1F",
+          "foreground": "#FFFFFF"
+        },
+        "semantic": {
+          "success": {
+            "bg": "#ECFDF5",
+            "bgHover": "#D1FAE5",
+            "border": "#A7F3D0",
+            "text": "#065F46",
+            "icon": "#10B981"
+          },
+          "warning": {
+            "bg": "#FFF7ED",
+            "bgHover": "#FFEDD5",
+            "border": "#FED7AA",
+            "text": "#92400E",
+            "icon": "#F59E0B"
+          },
+          "error": {
+            "bg": "#FEF2F2",
+            "bgHover": "#FEE2E2",
+            "border": "#FECACA",
+            "text": "#991B1B",
+            "icon": "#EF4444"
+          },
+          "info": {
+            "bg": "#EFF6FF",
+            "bgHover": "#DBEAFE",
+            "border": "#BFDBFE",
+            "text": "#1E40AF",
+            "icon": "#3B82F6"
+          },
+          "neutral": {
+            "bg": "#F9FAFB",
+            "bgHover": "#F3F4F6",
+            "border": "#E5E7EB",
+            "text": "#374151",
+            "icon": "#6B7280"
+          }
+        },
+        "text": {
+          "primary": "#111827",
+          "secondary": "#4B5563",
+          "tertiary": "#6B7280",
+          "muted": "#9CA3AF",
+          "disabled": "#D1D5DB",
+          "inverse": "#FFFFFF",
+          "link": "#FF8A1F",
+          "linkHover": "#EA580C"
+        },
+        "status": {
+          "shipped": { "bg": "#FFF7ED", "text": "#C2410C", "dot": "#FB923C" },
+          "processing": {
+            "bg": "#FEF3C7",
+            "text": "#92400E",
+            "dot": "#F59E0B"
+          },
+          "delivered": { "bg": "#D1FAE5", "text": "#065F46", "dot": "#10B981" },
+          "pending": { "bg": "#F3F4F6", "text": "#374151", "dot": "#6B7280" }
+        }
+      },
+      "gradients": {
+        "primary": "linear-gradient(135deg, #FF8A1F 0%, #FB923C 100%)",
+        "subtle": "linear-gradient(180deg, #FFFFFF 0%, #FFF9F5 100%)",
+        "warm": "linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%)"
+      },
+      "usage": {
+        "primary": "Use #FF8A1F for primary CTAs, active navigation states, key trend indicators, and chart primary series. Never use on large surfaces—reserve for emphasis.",
+        "neutrals": "Body text uses #111827 for headings and #4B5563 for body. Secondary text and labels use #6B7280. Avoid pure black.",
+        "semantic": "Green for positive metrics/changes (+8.09%, success states), red for negative changes, blue for informational pills, gray for neutral/pending.",
+        "backgrounds": "Main canvas is #F5E7D8. All cards are pure white. Table headers and subtle surfaces use #F9FAFB.",
+        "charts": "Primary series in orange gradients, secondary in muted orange/peach tones, tertiary in purple/blue. Keep chart backgrounds transparent or very subtle."
+      }
+    },
+    "typography": {
+      "description": "Clean, highly readable type system optimized for data-dense interfaces. Uses system fonts for performance and native feel.",
+      "family": {
+        "primary": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif",
+        "display": "inherit",
+        "mono": "'SF Mono', 'Consolas', 'Monaco', monospace",
+        "numeric": "inherit with tabular-nums"
+      },
+      "scale": {
+        "xs": {
+          "fontSize": 11,
+          "lineHeight": 16,
+          "fontWeight": 400,
+          "letterSpacing": 0.02
+        },
+        "sm": {
+          "fontSize": 12,
+          "lineHeight": 16,
+          "fontWeight": 400,
+          "letterSpacing": 0
+        },
+        "base": {
+          "fontSize": 14,
+          "lineHeight": 20,
+          "fontWeight": 400,
+          "letterSpacing": 0
+        },
+        "md": {
+          "fontSize": 15,
+          "lineHeight": 22,
+          "fontWeight": 400,
+          "letterSpacing": 0
+        },
+        "lg": {
+          "fontSize": 16,
+          "lineHeight": 24,
+          "fontWeight": 500,
+          "letterSpacing": 0
+        },
+        "xl": {
+          "fontSize": 18,
+          "lineHeight": 28,
+          "fontWeight": 600,
+          "letterSpacing": -0.01
+        },
+        "2xl": {
+          "fontSize": 22,
+          "lineHeight": 30,
+          "fontWeight": 700,
+          "letterSpacing": -0.02
+        },
+        "3xl": {
+          "fontSize": 28,
+          "lineHeight": 36,
+          "fontWeight": 700,
+          "letterSpacing": -0.02
+        },
+        "4xl": {
+          "fontSize": 36,
+          "lineHeight": 44,
+          "fontWeight": 700,
+          "letterSpacing": -0.03
+        }
+      },
+      "weights": {
+        "normal": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "useCases": {
+        "pageTitle": {
+          "size": "3xl",
+          "weight": "bold",
+          "color": "text.primary",
+          "usage": "Main dashboard heading 'Dashboard'"
+        },
+        "cardTitle": {
+          "size": "base",
+          "weight": "medium",
+          "color": "text.secondary",
+          "usage": "Card headers like 'Total Sales', 'Revenue Analytics'"
+        },
+        "metricValue": {
+          "size": "3xl",
+          "weight": "bold",
+          "color": "text.primary",
+          "usage": "Large numbers like '$983,410', '58,375'"
+        },
+        "metricDelta": {
+          "size": "xs",
+          "weight": "medium",
+          "color": "semantic",
+          "usage": "+8.09% from last week"
+        },
+        "bodyText": {
+          "size": "base",
+          "weight": "normal",
+          "color": "text.secondary",
+          "usage": "General content and descriptions"
+        },
+        "caption": {
+          "size": "sm",
+          "weight": "normal",
+          "color": "text.tertiary",
+          "usage": "Helper text, timestamps, metadata"
+        },
+        "label": {
+          "size": "xs",
+          "weight": "semibold",
+          "color": "text.tertiary",
+          "letterSpacing": "0.06em",
+          "textTransform": "uppercase",
+          "usage": "Table column headers, form labels"
+        },
+        "button": {
+          "size": "base",
+          "weight": "semibold",
+          "usage": "All button text"
+        },
+        "link": {
+          "size": "base",
+          "weight": "medium",
+          "color": "primary.DEFAULT",
+          "usage": "Navigation and inline links"
+        }
+      },
+      "rules": {
+        "hierarchy": "Use size and weight to establish clear hierarchy. Primary metrics are 28-36px bold, supporting text is 12-14px regular.",
+        "numbers": "Large metrics use bold weight with tight line-height. Apply tabular-nums for aligned columns in tables.",
+        "labels": "Uppercase labels with increased letter-spacing (0.06em) for table headers and section tags. Use 11-12px size.",
+        "readability": "Body text is never smaller than 14px. Line-height is 1.4-1.6 for optimal readability. Maintain strong contrast ratios (4.5:1 minimum).",
+        "consistency": "Sidebar nav uses 14px medium weight. Active states use same size but heavier weight or color change, not both."
+      }
+    },
+    "spacing": {
+      "description": "Consistent 4px-based spacing system creates predictable rhythm and alignment across all components.",
+      "unit": 4,
+      "scale": {
+        "0": 0,
+        "1": 4,
+        "2": 8,
+        "3": 12,
+        "4": 16,
+        "5": 20,
+        "6": 24,
+        "7": 28,
+        "8": 32,
+        "10": 40,
+        "12": 48,
+        "16": 64,
+        "20": 80,
+        "24": 96
+      },
+      "semantic": {
+        "cardPadding": { "top": 20, "right": 24, "bottom": 20, "left": 24 },
+        "cardGap": 24,
+        "sectionGap": 32,
+        "componentGaps": {
+          "tight": 8,
+          "normal": 12,
+          "relaxed": 16,
+          "loose": 24
+        },
+        "inlineElements": {
+          "iconToText": 8,
+          "buttonGroup": 12,
+          "badgeSpacing": 6
+        },
+        "formElements": {
+          "labelToInput": 8,
+          "fieldToField": 16,
+          "fieldGroupGap": 24
+        },
+        "lists": {
+          "itemPadding": 16,
+          "itemGap": 0,
+          "nestedIndent": 24
+        },
+        "tables": {
+          "cellPaddingX": 16,
+          "cellPaddingY": 14,
+          "headerPaddingY": 12,
+          "rowGap": 0
+        }
+      },
+      "principles": {
+        "consistency": "Always use values from the scale. Never use arbitrary values like 15px or 23px.",
+        "rhythm": "Maintain consistent vertical rhythm using 24px as the baseline grid for stacking components.",
+        "density": "Dense layouts (tables, lists) use 12-16px vertical spacing. Relaxed layouts (cards, forms) use 20-24px.",
+        "breathing": "Cards always have minimum 20px internal padding. Never let content touch card edges."
+      }
+    },
+    "radii": {
+      "description": "Rounded corners create friendly, modern aesthetic. Larger elements get larger radii.",
+      "scale": {
+        "none": 0,
+        "xs": 4,
+        "sm": 6,
+        "md": 10,
+        "lg": 14,
+        "xl": 16,
+        "2xl": 20,
+        "3xl": 24,
+        "full": 9999
+      },
+      "usage": {
+        "cards": "xl (16px) for standard cards, 2xl (20px) for hero cards",
+        "buttons": "full (9999px) for pill buttons, lg (14px) for rectangular buttons",
+        "inputs": "full (9999px) for search bars, lg (14px) for form inputs",
+        "badges": "full (9999px) for status pills",
+        "modals": "xl (16px)",
+        "dropdowns": "lg (14px)",
+        "images": "md (10px) for product thumbnails, lg (14px) for larger images",
+        "tables": "lg (14px) for table container, none for internal cells"
+      }
+    },
+    "iconography": {
+      "description": "Simple, rounded line icons with 1.5-2px stroke weight. Icons should be functional, not decorative.",
+      "style": "Outline/line style with rounded caps and joins. Prefer Lucide, Heroicons, or similar modern icon sets.",
+      "sizes": {
+        "xs": 14,
+        "sm": 16,
+        "md": 18,
+        "lg": 20,
+        "xl": 24,
+        "2xl": 32
+      },
+      "strokeWidth": {
+        "thin": 1.5,
+        "default": 2,
+        "thick": 2.5
+      },
+      "usage": {
+        "navigation": {
+          "size": "md (18px)",
+          "color": "text.tertiary",
+          "activeColor": "primary.DEFAULT"
+        },
+        "buttons": {
+          "size": "sm (16px)",
+          "color": "inherit from button variant"
+        },
+        "inputs": {
+          "size": "sm (16px)",
+          "color": "text.muted",
+          "position": "left, 12-16px from edge"
+        },
+        "cards": {
+          "size": "lg (20px)",
+          "color": "primary.DEFAULT or semantic colors"
+        },
+        "tables": { "size": "sm (16px)", "color": "text.tertiary" },
+        "status": {
+          "size": "xs (14px)",
+          "color": "semantic colors to match badge"
+        }
+      },
+      "principles": {
+        "consistency": "Use same icon set throughout. Never mix different icon styles.",
+        "alignment": "Vertically center icons with adjacent text. Use 8px gap between icon and text.",
+        "semantic": "Use consistent icons for actions (search, filter, settings, notifications). Don't vary icons for the same action.",
+        "color": "Default icon color is #6B7280. Use brand orange for active/selected states. Use semantic colors for status icons."
+      }
+    },
+    "animation": {
+      "description": "Subtle, fast animations enhance feedback without distracting. All transitions feel instant (<200ms).",
+      "durations": {
+        "instant": "100ms",
+        "fast": "150ms",
+        "normal": "200ms",
+        "slow": "300ms",
+        "slower": "500ms"
+      },
+      "easings": {
+        "default": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "in": "cubic-bezier(0.4, 0, 1, 1)",
+        "out": "cubic-bezier(0, 0, 0.2, 1)",
+        "inOut": "cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      "usage": {
+        "hover": {
+          "duration": "fast",
+          "easing": "out",
+          "properties": ["background-color", "box-shadow", "transform"]
+        },
+        "press": {
+          "duration": "instant",
+          "easing": "in",
+          "properties": ["transform", "opacity"]
+        },
+        "expand": {
+          "duration": "normal",
+          "easing": "default",
+          "properties": ["height", "opacity"]
+        },
+        "fade": {
+          "duration": "fast",
+          "easing": "default",
+          "properties": ["opacity"]
+        }
+      },
+      "principles": {
+        "performance": "Only animate transform and opacity for 60fps. Avoid animating width, height, or layout properties.",
+        "purpose": "Every animation should provide feedback or guide attention. No gratuitous motion.",
+        "subtlety": "Micro-interactions are barely noticeable but make the UI feel responsive.",
+        "accessibility": "Respect prefers-reduced-motion. Disable non-essential animations for users who request it."
+      }
+    }
+  },
+  "components": {
+    "navigation": {
+      "topBar": {
+        "description": "Top navigation bar with page title, search, notifications, and user profile.",
+        "height": 72,
+        "background": "#FFFFFF",
+        "borderBottom": "1px solid #F0E8DC",
+        "padding": { "horizontal": 32, "vertical": 16 },
+        "structure": {
+          "left": {
+            "element": "Page title",
+            "typography": "3xl/bold",
+            "color": "text.primary"
+          },
+          "center": {
+            "element": "Global search bar",
+            "width": "400px max",
+            "placeholder": "Search stock, order, etc",
+            "icon": "search (left)",
+            "iconColor": "text.muted"
+          },
+          "right": {
+            "elements": [
+              "Notification bell with badge",
+              "User avatar",
+              "User name",
+              "Dropdown chevron"
+            ],
+            "gap": 16,
+            "notificationBadge": {
+              "size": 18,
+              "background": "#EF4444",
+              "color": "#FFFFFF",
+              "position": "top-right of bell icon",
+              "fontSize": 11,
+              "fontWeight": 600
+            }
+          }
+        },
+        "search": {
+          "background": "#FFFFFF",
+          "border": "1px solid #E5E7EB",
+          "borderRadius": "full",
+          "padding": { "horizontal": 16, "vertical": 10 },
+          "iconSize": 18,
+          "iconColor": "#9CA3AF",
+          "placeholderColor": "#9CA3AF",
+          "focusState": {
+            "borderColor": "#FF8A1F",
+            "ring": "0 0 0 3px rgba(255, 138, 31, 0.1)"
+          }
+        },
+        "userProfile": {
+          "avatar": {
+            "size": 36,
+            "borderRadius": "full",
+            "border": "2px solid #F3F4F6"
+          },
+          "name": {
+            "fontSize": 14,
+            "fontWeight": 500,
+            "color": "#111827"
+          },
+          "dropdown": {
+            "iconSize": 16,
+            "iconColor": "#6B7280"
+          }
+        }
+      },
+      "sidebar": {
+        "description": "Fixed left sidebar with brand, navigation menu, and upgrade card at bottom.",
+        "width": 280,
+        "background": "#FFFFFF",
+        "padding": 24,
+        "shadow": "2px 0 12px rgba(0, 0, 0, 0.04)",
+        "brand": {
+          "height": 48,
+          "marginBottom": 32,
+          "logo": {
+            "background": "#FF8A1F",
+            "size": 32,
+            "borderRadius": "md",
+            "iconColor": "#FFFFFF"
+          },
+          "name": {
+            "fontSize": 18,
+            "fontWeight": 700,
+            "color": "#111827",
+            "marginLeft": 12
+          }
+        },
+        "menuItem": {
+          "height": 44,
+          "padding": { "horizontal": 12, "vertical": 10 },
+          "borderRadius": "full",
+          "marginBottom": 4,
+          "icon": {
+            "size": 18,
+            "strokeWidth": 2,
+            "marginRight": 12
+          },
+          "label": {
+            "fontSize": 14,
+            "fontWeight": 500
+          },
+          "states": {
+            "default": {
+              "background": "transparent",
+              "color": "#6B7280",
+              "iconColor": "#6B7280"
+            },
+            "hover": {
+              "background": "#F9FAFB",
+              "color": "#374151",
+              "transition": "150ms ease-out"
+            },
+            "active": {
+              "background": "#FF8A1F",
+              "color": "#FFFFFF",
+              "iconColor": "#FFFFFF",
+              "fontWeight": 600
+            }
+          }
+        },
+        "divider": {
+          "margin": { "top": 24, "bottom": 24 },
+          "border": "1px solid #F0E8DC"
+        },
+        "upgradeCard": {
+          "description": "Promotional card for version upgrade, sticky at bottom of sidebar.",
+          "background": "linear-gradient(135deg, #FF8A1F 0%, #FB923C 100%)",
+          "borderRadius": "xl",
+          "padding": 20,
+          "marginTop": "auto",
+          "badge": {
+            "text": "Version 4.5",
+            "background": "rgba(255, 255, 255, 0.2)",
+            "color": "#FFFFFF",
+            "fontSize": 11,
+            "fontWeight": 600,
+            "padding": { "horizontal": 8, "vertical": 4 },
+            "borderRadius": "full",
+            "marginBottom": 8
+          },
+          "title": {
+            "text": "is Ready",
+            "fontSize": 18,
+            "fontWeight": 700,
+            "color": "#FFFFFF",
+            "marginBottom": 8
+          },
+          "features": {
+            "fontSize": 12,
+            "color": "rgba(255, 255, 255, 0.9)",
+            "marginBottom": 16,
+            "bulletColor": "rgba(255, 255, 255, 0.6)"
+          },
+          "button": {
+            "text": "Upgrade Now",
+            "background": "#FFFFFF",
+            "color": "#FF8A1F",
+            "fontSize": 14,
+            "fontWeight": 600,
+            "padding": { "horizontal": 20, "vertical": 10 },
+            "borderRadius": "full",
+            "hoverBackground": "rgba(255, 255, 255, 0.95)"
+          }
+        }
+      }
+    },
+    "cards": {
+      "metricCard": {
+        "description": "Small card displaying a single key metric with optional icon and change indicator.",
+        "minWidth": 200,
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "padding": 20,
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "examples": [
+          {
+            "label": "Total Sales",
+            "value": "$983,410",
+            "delta": "+8.39%",
+            "deltaText": "vs last week",
+            "icon": "shopping-bag",
+            "iconBackground": "#FFF7ED",
+            "iconColor": "#FF8A1F"
+          },
+          {
+            "label": "Total Orders",
+            "value": "58,375",
+            "delta": "-2.86%",
+            "deltaText": "vs last week",
+            "icon": "shopping-cart",
+            "iconBackground": "#FFF7ED",
+            "iconColor": "#FF8A1F"
+          },
+          {
+            "label": "Total Shipped",
+            "value": "237,782",
+            "delta": "+6.75%",
+            "deltaText": "vs last week",
+            "icon": "truck",
+            "iconBackground": "#FFF7ED",
+            "iconColor": "#FF8A1F"
+          }
+        ],
+        "structure": {
+          "header": {
+            "display": "flex justify-between items-center",
+            "marginBottom": 12,
+            "label": {
+              "fontSize": 12,
+              "fontWeight": 500,
+              "color": "#6B7280"
+            },
+            "icon": {
+              "size": 20,
+              "color": "#FF8A1F",
+              "background": "#FFF7ED",
+              "padding": 8,
+              "borderRadius": "md"
+            }
+          },
+          "value": {
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "#111827",
+            "marginBottom": 8
+          },
+          "delta": {
+            "fontSize": 11,
+            "fontWeight": 500,
+            "display": "inline-flex items-center gap-1",
+            "positive": {
+              "color": "#10B981",
+              "background": "#ECFDF5",
+              "padding": "4px 8px",
+              "borderRadius": "full"
+            },
+            "negative": {
+              "color": "#EF4444",
+              "background": "#FEF2F2",
+              "padding": "4px 8px",
+              "borderRadius": "full"
+            }
+          }
+        }
+      },
+      "chartCard": {
+        "description": "Large card containing analytics chart with header controls and legend.",
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "padding": 24,
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "header": {
+          "display": "flex justify-between items-center",
+          "marginBottom": 24,
+          "title": {
+            "fontSize": 16,
+            "fontWeight": 600,
+            "color": "#111827"
+          },
+          "controls": {
+            "display": "flex gap-2",
+            "button": {
+              "background": "#FFF7ED",
+              "color": "#FF8A1F",
+              "fontSize": 12,
+              "fontWeight": 500,
+              "padding": { "horizontal": 12, "vertical": 6 },
+              "borderRadius": "full",
+              "activeBackground": "#FF8A1F",
+              "activeColor": "#FFFFFF"
+            }
+          }
+        },
+        "chart": {
+          "height": 280,
+          "gridColor": "#F3F4F6",
+          "lineColors": ["#FF8A1F", "#FB923C", "#FDBA74"],
+          "lineWidth": 2,
+          "dotRadius": 4,
+          "areaOpacity": 0.1,
+          "yAxis": {
+            "labels": ["0k", "2k", "4k", "6k", "8k", "10k"],
+            "fontSize": 11,
+            "color": "#9CA3AF",
+            "gridLines": true
+          },
+          "xAxis": {
+            "labels": [
+              "5-Aug",
+              "11-Aug",
+              "17-Aug",
+              "8-Aug",
+              "15-Aug",
+              "9-Aug",
+              "16-Aug",
+              "9-Aug"
+            ],
+            "fontSize": 11,
+            "color": "#9CA3AF",
+            "gridLines": false
+          },
+          "tooltip": {
+            "background": "#111827",
+            "color": "#FFFFFF",
+            "borderRadius": "md",
+            "padding": { "horizontal": 10, "vertical": 6 },
+            "fontSize": 12,
+            "arrow": true
+          },
+          "dataPoints": {
+            "solid": {
+              "stroke": "#FF8A1F",
+              "fill": "rgba(255, 138, 31, 0.1)",
+              "label": "Net Revenue"
+            },
+            "dashed": {
+              "stroke": "#FB923C",
+              "strokeDasharray": "5,5",
+              "fill": "transparent",
+              "label": "Gross"
+            }
+          },
+          "peakIndicator": {
+            "show": true,
+            "label": "$14,521",
+            "background": "#FFFFFF",
+            "border": "1px solid #E5E7EB",
+            "fontSize": 10,
+            "fontWeight": 600
+          }
+        },
+        "legend": {
+          "marginTop": 16,
+          "display": "flex gap-4",
+          "item": {
+            "fontSize": 12,
+            "color": "#6B7280",
+            "dotSize": 8,
+            "gap": 6
+          }
+        }
+      },
+      "progressCard": {
+        "description": "Card with circular/donut progress indicator showing percentage completion.",
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "padding": 24,
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "header": {
+          "title": {
+            "fontSize": 16,
+            "fontWeight": 600,
+            "color": "#111827",
+            "marginBottom": 20
+          }
+        },
+        "progress": {
+          "type": "donut",
+          "size": 160,
+          "thickness": 14,
+          "trackColor": "#FED7AA",
+          "progressColor": "#FF8A1F",
+          "value": "85%",
+          "centerLabel": {
+            "percentage": {
+              "fontSize": 32,
+              "fontWeight": 700,
+              "color": "#111827",
+              "value": "85%"
+            },
+            "subtext": {
+              "fontSize": 12,
+              "color": "#6B7280",
+              "text": "4.19% from last month"
+            }
+          },
+          "animation": {
+            "duration": "1000ms",
+            "easing": "ease-out",
+            "delay": "200ms"
+          }
+        },
+        "details": {
+          "marginTop": 20,
+          "layout": "flex justify-between",
+          "items": [
+            {
+              "label": {
+                "fontSize": 12,
+                "color": "#6B7280",
+                "text": "Our achievment"
+              },
+              "value": {
+                "fontSize": 16,
+                "fontWeight": 600,
+                "color": "#111827",
+                "text": "$600,000"
+              }
+            },
+            {
+              "label": {
+                "fontSize": 12,
+                "color": "#6B7280",
+                "text": "Our target"
+              },
+              "value": {
+                "fontSize": 16,
+                "fontWeight": 600,
+                "color": "#111827",
+                "text": "$810,000"
+              }
+            }
+          ],
+          "directProgress": {
+            "label": "Direct Progress",
+            "value": "85%",
+            "sublabel": "Our achievment on 85% of $600,000/$810,000",
+            "icon": "trending-up",
+            "iconColor": "#FF8A1F",
+            "iconBackground": "#FFF7ED"
+          }
+        }
+      },
+      "categoryCard": {
+        "description": "Card showing category breakdown with donut chart and legend.",
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "padding": 24,
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "header": {
+          "display": "flex justify-between items-center",
+          "marginBottom": 20,
+          "title": {
+            "fontSize": 16,
+            "fontWeight": 600,
+            "color": "#111827"
+          },
+          "action": {
+            "fontSize": 12,
+            "color": "#FF8A1F",
+            "fontWeight": 500
+          }
+        },
+        "donut": {
+          "size": 180,
+          "thickness": 18,
+          "colors": ["#FF8A1F", "#FB923C", "#FDBA74", "#FED7AA"],
+          "centerValue": {
+            "fontSize": 28,
+            "fontWeight": 700,
+            "color": "#111827",
+            "text": "$3,400,000"
+          },
+          "data": [
+            {
+              "category": "Electronics",
+              "value": 1200000,
+              "percentage": 35.3,
+              "color": "#FF8A1F"
+            },
+            {
+              "category": "Fashion",
+              "value": 950000,
+              "percentage": 27.9,
+              "color": "#FB923C"
+            },
+            {
+              "category": "Home & Kitchen",
+              "value": 750000,
+              "percentage": 22.1,
+              "color": "#FDBA74"
+            },
+            {
+              "category": "Beauty & Personal Care",
+              "value": 500000,
+              "percentage": 14.7,
+              "color": "#FED7AA"
+            }
+          ]
+        },
+        "legend": {
+          "marginTop": 20,
+          "item": {
+            "height": 32,
+            "display": "flex justify-between items-center",
+            "dot": {
+              "size": 8,
+              "marginRight": 8,
+              "borderRadius": "full"
+            },
+            "label": {
+              "fontSize": 14,
+              "color": "#374151"
+            },
+            "value": {
+              "fontSize": 14,
+              "fontWeight": 600,
+              "color": "#111827"
+            }
+          },
+          "examples": [
+            {
+              "label": "Electronics",
+              "value": "$1,200,000",
+              "dotColor": "#FF8A1F"
+            },
+            { "label": "Fashion", "value": "$950,000", "dotColor": "#FB923C" },
+            {
+              "label": "Home & Kitchen",
+              "value": "$750,000",
+              "dotColor": "#FDBA74"
+            },
+            {
+              "label": "Beauty & Personal Care",
+              "value": "$500,000",
+              "dotColor": "#FED7AA"
+            }
+          ]
+        }
+      },
+      "listCard": {
+        "description": "Card containing a vertical list of items (e.g., recent activity, user stats).",
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "padding": 24,
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "header": {
+          "title": {
+            "fontSize": 16,
+            "fontWeight": 600,
+            "color": "#111827",
+            "marginBottom": 16
+          }
+        },
+        "item": {
+          "padding": { "vertical": 12, "horizontal": 0 },
+          "borderBottom": "1px solid #F3F4F6",
+          "display": "flex items-start gap-3",
+          "icon": {
+            "size": 36,
+            "background": "#FF8A1F",
+            "borderRadius": "md",
+            "color": "#FFFFFF",
+            "fontSize": 14,
+            "fontWeight": 600,
+            "display": "flex items-center justify-center"
+          },
+          "content": {
+            "title": {
+              "fontSize": 14,
+              "fontWeight": 500,
+              "color": "#111827",
+              "marginBottom": 2
+            },
+            "subtitle": {
+              "fontSize": 12,
+              "color": "#6B7280"
+            }
+          },
+          "examples": [
+            {
+              "icon": "03",
+              "iconBg": "#FF8A1F",
+              "title": "Marcus Oberbrunner purchased 2 items totaling $500",
+              "time": "12:15 PM"
+            },
+            {
+              "icon": "03",
+              "iconBg": "#FF8A1F",
+              "title": "The price of 'Smart TV' was updated from $699 to$500",
+              "time": "11:42 AM"
+            },
+            {
+              "icon": "03",
+              "iconBg": "#FF8A1F",
+              "title": "Vincent Laurent left a 5-star review for 'Wireless Headphones'",
+              "time": "10:38 AM"
+            },
+            {
+              "icon": "03",
+              "iconBg": "#FF8A1F",
+              "title": "'Running Shoes' stock is below 10 units",
+              "time": "9:25 AM"
+            },
+            {
+              "icon": "03",
+              "iconBg": "#FF8A1F",
+              "title": "Carmen Lom under status changed from 'Pending' to 'Processing'",
+              "time": "7:40 AM"
+            }
+          ]
+        }
+      },
+      "statsCard": {
+        "description": "Card with multiple stat rows (e.g., Active User breakdown by platform).",
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "padding": 24,
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "header": {
+          "display": "flex justify-between items-center",
+          "marginBottom": 20,
+          "title": {
+            "fontSize": 16,
+            "fontWeight": 600,
+            "color": "#111827"
+          },
+          "menu": {
+            "iconSize": 20,
+            "color": "#6B7280"
+          }
+        },
+        "mainMetric": {
+          "value": {
+            "fontSize": 32,
+            "fontWeight": 700,
+            "color": "#111827",
+            "marginBottom": 4
+          },
+          "delta": {
+            "fontSize": 11,
+            "fontWeight": 500,
+            "color": "#10B981",
+            "background": "#ECFDF5",
+            "padding": "4px 8px",
+            "borderRadius": "full",
+            "marginBottom": 16
+          }
+        },
+        "statRow": {
+          "height": 40,
+          "display": "flex justify-between items-center",
+          "marginBottom": 8,
+          "label": {
+            "fontSize": 13,
+            "color": "#6B7280"
+          },
+          "bar": {
+            "height": 6,
+            "background": "#F3F4F6",
+            "borderRadius": "full",
+            "fill": {
+              "background": "#FF8A1F",
+              "borderRadius": "full"
+            }
+          },
+          "percentage": {
+            "fontSize": 13,
+            "fontWeight": 600,
+            "color": "#111827",
+            "marginLeft": 12
+          },
+          "examples": [
+            {
+              "platform": "United States",
+              "percentage": 36,
+              "barColor": "#FF8A1F"
+            },
+            {
+              "platform": "United Kingdom",
+              "percentage": 24,
+              "barColor": "#FF8A1F"
+            },
+            {
+              "platform": "Indonesia",
+              "percentage": 17.5,
+              "barColor": "#FF8A1F"
+            },
+            { "platform": "Australia", "percentage": 15, "barColor": "#FF8A1F" }
+          ]
+        },
+        "totalUsers": {
+          "value": "2,758",
+          "delta": "+8.09%",
+          "deltaText": "from last month",
+          "deltaColor": "#10B981",
+          "deltaBackground": "#ECFDF5"
+        }
+      },
+      "conversionCard": {
+        "description": "Card showing conversion funnel with multiple metric columns.",
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "padding": 24,
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "header": {
+          "title": {
+            "fontSize": 16,
+            "fontWeight": 600,
+            "color": "#111827",
+            "marginBottom": 20
+          }
+        },
+        "columns": {
+          "display": "grid grid-cols-5 gap-4",
+          "column": {
+            "label": {
+              "fontSize": 11,
+              "color": "#9CA3AF",
+              "marginBottom": 8,
+              "textTransform": "uppercase",
+              "letterSpacing": "0.05em"
+            },
+            "value": {
+              "fontSize": 20,
+              "fontWeight": 700,
+              "color": "#111827",
+              "marginBottom": 4
+            },
+            "delta": {
+              "fontSize": 11,
+              "color": "#10B981",
+              "fontWeight": 500
+            }
+          }
+        },
+        "visualization": {
+          "marginTop": 20,
+          "height": 60,
+          "type": "funnel bars",
+          "colors": ["#FED7AA", "#FDBA74", "#FB923C", "#FF8A1F", "#EA580C"],
+          "borderRadius": "sm",
+          "gap": 4,
+          "data": [
+            {
+              "stage": "Visitors",
+              "value": 25000,
+              "delta": "+3%",
+              "color": "#FED7AA",
+              "width": "100%"
+            },
+            {
+              "stage": "Add to Cart",
+              "value": 12000,
+              "delta": "+8%",
+              "color": "#FDBA74",
+              "width": "48%"
+            },
+            {
+              "stage": "Checkout",
+              "value": 8500,
+              "delta": "+6%",
+              "color": "#FB923C",
+              "width": "34%"
+            },
+            {
+              "stage": "Purchased",
+              "value": 6200,
+              "delta": "+3%",
+              "color": "#FF8A1F",
+              "width": "24.8%"
+            },
+            {
+              "stage": "Completed",
+              "value": 5000,
+              "delta": "+6%",
+              "color": "#EA580C",
+              "width": "20%"
+            }
+          ]
+        }
+      },
+      "trafficSourcesCard": {
+        "description": "Card showing traffic sources with bar chart and percentages.",
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "padding": 24,
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "header": {
+          "display": "flex justify-between items-center",
+          "marginBottom": 20,
+          "title": {
+            "fontSize": 16,
+            "fontWeight": 600,
+            "color": "#111827"
+          },
+          "menu": {
+            "iconSize": 20,
+            "color": "#6B7280"
+          }
+        },
+        "chart": {
+          "type": "horizontal bar",
+          "marginBottom": 16,
+          "colors": ["#FF8A1F", "#FB923C", "#FDBA74", "#FED7AA"],
+          "height": 80,
+          "gap": 2,
+          "borderRadius": "sm",
+          "data": [
+            {
+              "source": "Direct Traffic",
+              "percentage": 40,
+              "color": "#FF8A1F",
+              "width": "40%"
+            },
+            {
+              "source": "Organic Search",
+              "percentage": 30,
+              "color": "#FB923C",
+              "width": "30%"
+            },
+            {
+              "source": "Social Media",
+              "percentage": 15,
+              "color": "#FDBA74",
+              "width": "15%"
+            },
+            {
+              "source": "Referral Traffic",
+              "percentage": 10,
+              "color": "#FED7AA",
+              "width": "10%"
+            },
+            {
+              "source": "Email Campaigns",
+              "percentage": 5,
+              "color": "#FFE7CF",
+              "width": "5%"
+            }
+          ]
+        },
+        "legend": {
+          "item": {
+            "height": 32,
+            "display": "flex justify-between items-center",
+            "dot": {
+              "size": 8,
+              "marginRight": 8,
+              "borderRadius": "full"
+            },
+            "label": {
+              "fontSize": 13,
+              "color": "#6B7280"
+            },
+            "percentage": {
+              "fontSize": 14,
+              "fontWeight": 600,
+              "color": "#111827"
+            }
+          },
+          "examples": [
+            {
+              "label": "Direct Traffic",
+              "percentage": "40%",
+              "dotColor": "#FF8A1F"
+            },
+            {
+              "label": "Organic Search",
+              "percentage": "30%",
+              "dotColor": "#FB923C"
+            },
+            {
+              "label": "Social Media",
+              "percentage": "15%",
+              "dotColor": "#FDBA74"
+            },
+            {
+              "label": "Referral Traffic",
+              "percentage": "10%",
+              "dotColor": "#FED7AA"
+            },
+            {
+              "label": "Email Campaigns",
+              "percentage": "5%",
+              "dotColor": "#FFE7CF"
+            }
+          ]
+        }
+      }
+    },
+    "tables": {
+      "dataTable": {
+        "description": "Full-featured data table for orders, products, customers, etc.",
+        "background": "#FFFFFF",
+        "borderRadius": "xl",
+        "overflow": "hidden",
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+        "header": {
+          "display": "flex justify-between items-center",
+          "padding": { "horizontal": 24, "vertical": 16 },
+          "borderBottom": "1px solid #F0E8DC",
+          "title": {
+            "fontSize": 16,
+            "fontWeight": 600,
+            "color": "#111827"
+          },
+          "actions": {
+            "display": "flex gap-2",
+            "search": {
+              "width": 240,
+              "background": "#F9FAFB",
+              "border": "1px solid #E5E7EB",
+              "borderRadius": "full",
+              "padding": { "horizontal": 12, "vertical": 6 },
+              "fontSize": 12,
+              "placeholderColor": "#9CA3AF"
+            },
+            "button": {
+              "background": "#FF8A1F",
+              "color": "#FFFFFF",
+              "fontSize": 12,
+              "fontWeight": 600,
+              "padding": { "horizontal": 16, "vertical": 8 },
+              "borderRadius": "full"
+            }
+          }
+        },
+        "tableHeader": {
+          "background": "#F9FAFB",
+          "height": 44,
+          "cell": {
+            "fontSize": 11,
+            "fontWeight": 600,
+            "color": "#6B7280",
+            "textTransform": "uppercase",
+            "letterSpacing": "0.05em",
+            "padding": { "horizontal": 16, "vertical": 12 }
+          }
+        },
+        "tableRow": {
+          "height": 56,
+          "borderBottom": "1px solid #F3F4F6",
+          "hoverBackground": "#F9FAFB",
+          "transition": "150ms ease-out",
+          "cell": {
+            "fontSize": 14,
+            "color": "#374151",
+            "padding": { "horizontal": 16, "vertical": 14 }
+          },
+          "productCell": {
+            "display": "flex items-center gap-3",
+            "icon": {
+              "size": 32,
+              "borderRadius": "md",
+              "background": "#F9FAFB",
+              "padding": 6,
+              "objectFit": "contain"
+            },
+            "name": {
+              "fontSize": 14,
+              "fontWeight": 500,
+              "color": "#111827"
+            }
+          },
+          "examples": [
+            {
+              "orderNo": "#10234",
+              "customer": "Amaya Weber",
+              "product": "Wireless Headphones",
+              "productIcon": "🎧",
+              "qty": 2,
+              "total": "$100",
+              "status": "shipped",
+              "statusColor": "warning"
+            },
+            {
+              "orderNo": "#10235",
+              "customer": "Sebastian Adams",
+              "product": "Running Shoes",
+              "productIcon": "👟",
+              "qty": 1,
+              "total": "$75",
+              "status": "processing",
+              "statusColor": "warning"
+            },
+            {
+              "orderNo": "#10236",
+              "customer": "Suzanne Bright",
+              "product": "Smartwatch",
+              "productIcon": "⌚",
+              "qty": 1,
+              "total": "$150",
+              "status": "delivered",
+              "statusColor": "success"
+            },
+            {
+              "orderNo": "#10237",
+              "customer": "Hope Hoel",
+              "product": "Coffee Maker",
+              "productIcon": "☕",
+              "qty": 1,
+              "total": "$60",
+              "status": "pending",
+              "statusColor": "neutral"
+            },
+            {
+              "orderNo": "#10238",
+              "customer": "Anna Singh",
+              "product": "Bluetooth Speaker",
+              "productIcon": "🔊",
+              "qty": 3,
+              "total": "$90",
+              "status": "shipped",
+              "statusColor": "warning"
+            }
+          ]
+        },
+        "columnHeaders": {
+          "examples": [
+            {
+              "key": "orderNo",
+              "label": "No",
+              "width": "10%",
+              "sortable": true
+            },
+            {
+              "key": "customer",
+              "label": "Customer",
+              "width": "20%",
+              "sortable": true
+            },
+            {
+              "key": "product",
+              "label": "Product",
+              "width": "25%",
+              "sortable": false
+            },
+            { "key": "qty", "label": "Qty", "width": "10%", "sortable": true },
+            {
+              "key": "total",
+              "label": "Total",
+              "width": "15%",
+              "sortable": true
+            },
+            {
+              "key": "status",
+              "label": "Status",
+              "width": "20%",
+              "sortable": true
+            }
+          ]
+        },
+        "emptyState": {
+          "padding": { "vertical": 64 },
+          "textAlign": "center",
+          "icon": {
+            "size": 48,
+            "color": "#D1D5DB",
+            "marginBottom": 12
+          },
+          "text": {
+            "fontSize": 14,
+            "color": "#9CA3AF"
+          }
+        }
+      }
+    },
+    "inputs": {
+      "textInput": {
+        "description": "Standard text input field with optional icon.",
+        "height": 40,
+        "background": "#FFFFFF",
+        "border": "1px solid #E5E7EB",
+        "borderRadius": "lg",
+        "padding": { "horizontal": 14, "vertical": 10 },
+        "fontSize": 14,
+        "color": "#111827",
+        "placeholderColor": "#9CA3AF",
+        "focusState": {
+          "borderColor": "#FF8A1F",
+          "ring": "0 0 0 3px rgba(255, 138, 31, 0.1)",
+          "outline": "none"
+        },
+        "iconVariant": {
+          "paddingLeft": 40,
+          "icon": {
+            "size": 18,
+            "color": "#9CA3AF",
+            "position": "absolute left-3"
+          }
+        }
+      },
+      "searchInput": {
+        "description": "Pill-shaped search input with icon.",
+        "height": 40,
+        "background": "#FFFFFF",
+        "border": "1px solid #E5E7EB",
+        "borderRadius": "full",
+        "padding": { "horizontal": 16, "vertical": 10, "left": 40 },
+        "fontSize": 14,
+        "placeholderColor": "#9CA3AF",
+        "icon": {
+          "size": 18,
+          "color": "#9CA3AF",
+          "position": "absolute left-3"
+        },
+        "focusState": {
+          "borderColor": "#FF8A1F",
+          "ring": "0 0 0 3px rgba(255, 138, 31, 0.1)"
+        }
+      }
+    },
+    "buttons": {
+      "primary": {
+        "description": "Main action button in brand orange.",
+        "background": "#FF8A1F",
+        "color": "#FFFFFF",
+        "fontSize": 14,
+        "fontWeight": 600,
+        "padding": { "horizontal": 20, "vertical": 10 },
+        "borderRadius": "full",
+        "shadow": "0 1px 2px rgba(0, 0, 0, 0.05)",
+        "hoverState": {
+          "background": "#EA580C",
+          "shadow": "0 4px 8px rgba(255, 138, 31, 0.2)",
+          "transform": "translateY(-1px)",
+          "transition": "150ms ease-out"
+        },
+        "activeState": {
+          "background": "#C2410C",
+          "transform": "translateY(0)"
+        }
+      },
+      "secondary": {
+        "description": "Secondary action button with outline.",
+        "background": "#FFFFFF",
+        "color": "#FF8A1F",
+        "border": "1px solid #FED7AA",
+        "fontSize": 14,
+        "fontWeight": 600,
+        "padding": { "horizontal": 20, "vertical": 10 },
+        "borderRadius": "full",
+        "hoverState": {
+          "background": "#FFF7ED",
+          "borderColor": "#FF8A1F",
+          "transition": "150ms ease-out"
+        }
+      },
+      "ghost": {
+        "description": "Minimal button with no background.",
+        "background": "transparent",
+        "color": "#6B7280",
+        "fontSize": 14,
+        "fontWeight": 500,
+        "padding": { "horizontal": 16, "vertical": 8 },
+        "borderRadius": "lg",
+        "hoverState": {
+          "background": "#F9FAFB",
+          "color": "#374151"
+        }
+      },
+      "pill": {
+        "description": "Small pill button for filters and tags.",
+        "background": "#FFF7ED",
+        "color": "#FF8A1F",
+        "fontSize": 12,
+        "fontWeight": 500,
+        "padding": { "horizontal": 12, "vertical": 6 },
+        "borderRadius": "full",
+        "activeState": {
+          "background": "#FF8A1F",
+          "color": "#FFFFFF"
+        }
+      },
+      "icon": {
+        "description": "Icon-only button.",
+        "size": 36,
+        "background": "#F9FAFB",
+        "color": "#6B7280",
+        "borderRadius": "lg",
+        "iconSize": 18,
+        "hoverState": {
+          "background": "#F3F4F6",
+          "color": "#374151"
+        }
+      }
+    },
+    "badges": {
+      "status": {
+        "description": "Status badge for table cells and cards.",
+        "height": 24,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "padding": { "horizontal": 10, "vertical": 4 },
+        "borderRadius": "full",
+        "variants": {
+          "success": {
+            "background": "#D1FAE5",
+            "color": "#065F46",
+            "example": "Delivered"
+          },
+          "warning": {
+            "background": "#FFF7ED",
+            "color": "#92400E",
+            "example": "Shipped, Processing"
+          },
+          "info": {
+            "background": "#DBEAFE",
+            "color": "#1E40AF",
+            "example": "Pending"
+          },
+          "neutral": {
+            "background": "#F3F4F6",
+            "color": "#374151",
+            "example": "Draft"
+          }
+        }
+      },
+      "count": {
+        "description": "Numeric badge for notifications.",
+        "minWidth": 18,
+        "height": 18,
+        "background": "#EF4444",
+        "color": "#FFFFFF",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "borderRadius": "full",
+        "padding": { "horizontal": 6 },
+        "position": "absolute top-0 right-0"
+      }
+    }
+  },
+  "patterns": {
+    "dashboardLayout": {
+      "description": "Standard dashboard page layout with metric cards at top, charts in middle, table at bottom.",
+      "structure": [
+        "Top row: 4 metric cards (Total Sales, Total Orders, Total Shipped, Total Returns)",
+        "Second row: Large chart card (Revenue Analytics) + Medium card (Monthly Target/Progress)",
+        "Third row: Medium chart (Active User) + Medium chart (Conversion Rate) + Medium list (Traffic Sources)",
+        "Fourth row: Large table (Recent Orders) + Medium list (Recent Activity)"
+      ],
+      "gridSystem": {
+        "container": "max-w-7xl mx-auto",
+        "gap": 24,
+        "columns": {
+          "desktop": "repeat(12, 1fr)",
+          "tablet": "repeat(8, 1fr)",
+          "mobile": "repeat(4, 1fr)"
+        }
+      },
+      "responsiveness": {
+        "desktop": "4-column grid for metrics, 2-3 column for charts",
+        "tablet": "2-column grid for metrics, 1-2 column for charts",
+        "mobile": "1-column stacked layout"
+      }
+    },
+    "cardGrid": {
+      "description": "Responsive grid for dashboard cards.",
+      "gap": 24,
+      "columnTemplates": {
+        "metrics": "repeat(auto-fit, minmax(240px, 1fr))",
+        "mixed": "repeat(12, 1fr) with span classes"
+      }
+    }
+  },
+  "principles": {
+    "visual": [
+      "Prioritize data visibility: metrics should be scannable at a glance.",
+      "Use the warm beige canvas (#F5E7D8) to reduce eye strain and create welcoming atmosphere.",
+      "Reserve orange (#FF8A1F) for primary actions, active states, and key metric highlights only.",
+      "Maintain generous whitespace: cards breathe with 24px gaps, never touching edges.",
+      "Prefer subtle shadows over heavy borders to create depth.",
+      "Use color semantically: green for positive, red for negative, orange for primary, gray for neutral."
+    ],
+    "interaction": [
+      "All interactions feel instant (<200ms transitions).",
+      "Hover states use background lightening, not borders.",
+      "Active states combine background change with subtle scale/shadow changes.",
+      "Loading states use skeleton screens in same layout as loaded content.",
+      "Error states are inline and contextual, not modal unless critical."
+    ],
+    "composition": [
+      "Establish clear hierarchy: metrics > trends > details.",
+      "Top row always contains high-level KPIs (4 metric cards).",
+      "Middle rows show trends, breakdowns, and comparisons (charts, progress).",
+      "Bottom rows contain detailed data (tables, activity logs).",
+      "Align related metrics vertically for easy comparison.",
+      "Keep card titles consistent in size and position (top-left, 16px/600)."
+    ],
+    "accessibility": [
+      "Maintain 4.5:1 contrast ratio minimum for all text.",
+      "Never use color alone to convey information (combine with icons/text).",
+      "All interactive elements have 44px minimum touch target.",
+      "Support keyboard navigation with visible focus states.",
+      "Respect prefers-reduced-motion for animations.",
+      "Provide text alternatives for all charts and graphs."
+    ],
+    "dataVisualization": [
+      "Charts use orange as primary color (#FF8A1F) with lighter tints for secondary series.",
+      "Grid lines are subtle (#F3F4F6) and don't compete with data.",
+      "Always include axis labels and legends.",
+      "Use consistent scale across related charts.",
+      "Donut/pie charts include percentage labels.",
+      "Bar charts have rounded corners (8px) for friendliness."
+    ],
+    "responsive": [
+      "Mobile-first approach: stack cards vertically on small screens.",
+      "Tablet (768px+): 2-column layout for most cards.",
+      "Desktop (1024px+): 3-4 column layout with sidebar.",
+      "Collapse sidebar to hamburger menu below 1024px.",
+      "Table cards become scrollable horizontally on mobile.",
+      "Chart heights reduce on mobile to preserve readability."
+    ],
+    "performance": [
+      "Load critical metrics first (top row cards).",
+      "Lazy load charts and tables below fold.",
+      "Use skeleton screens during data fetching.",
+      "Optimize images: WebP format, responsive sizes.",
+      "Minimize animation to transform/opacity only.",
+      "Virtual scrolling for tables with 100+ rows."
+    ],
+    "consistency": [
+      "Use same card structure across dashboard: header (title + action) → content → footer (optional).",
+      "Icon + text combinations always use 8px gap.",
+      "All cards have 24px internal padding.",
+      "Status badges use same size (24px height) and style across dashboard.",
+      "Maintain typography scale strictly: don't introduce new sizes.",
+      "Use spacing scale values only: 4, 8, 12, 16, 20, 24, 32, etc."
+    ]
+  },
+  "microDetails": {
+    "description": "Pixel-perfect micro-details and visual refinements observed in the dashboard.",
+    "shadows": {
+      "cardShadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+      "cardHoverShadow": "0 8px 24px rgba(0, 0, 0, 0.12)",
+      "dropdownShadow": "0 10px 40px rgba(0, 0, 0, 0.12)",
+      "modalShadow": "0 20px 60px rgba(0, 0, 0, 0.15)"
+    },
+    "borders": {
+      "cardBorder": "1px solid rgba(148, 163, 184, 0.18)",
+      "inputBorder": "1px solid #E5E7EB",
+      "divider": "1px solid #F0E8DC",
+      "tableDivider": "1px solid #F3F4F6"
+    },
+    "transitions": {
+      "default": "all 150ms ease-out",
+      "fast": "all 100ms ease-out",
+      "slow": "all 300ms ease-out"
+    },
+    "focus": {
+      "ring": "0 0 0 3px rgba(255, 138, 31, 0.1)",
+      "borderColor": "#FF8A1F",
+      "outline": "none"
+    },
+    "scrollbar": {
+      "width": 8,
+      "trackBackground": "#F3F4F6",
+      "thumbBackground": "#D1D5DB",
+      "thumbHoverBackground": "#9CA3AF",
+      "borderRadius": "full"
+    },
+    "skeletonLoading": {
+      "background": "linear-gradient(90deg, #F3F4F6 25%, #E5E7EB 50%, #F3F4F6 75%)",
+      "animation": "shimmer 1.5s infinite",
+      "borderRadius": "inherit"
+    }
+  },
+  "componentStates": {
+    "description": "Comprehensive state specifications for all interactive elements.",
+    "button": {
+      "default": "Base state with defined colors and styles",
+      "hover": "Background darkens by 1 shade, subtle lift with shadow",
+      "active": "Background darkens by 2 shades, pressed down effect",
+      "disabled": "Opacity 0.5, cursor not-allowed, no hover effects",
+      "loading": "Spinner replaces text, button disabled during loading"
+    },
+    "input": {
+      "default": "Light border, placeholder text visible",
+      "focus": "Orange border, focus ring appears, placeholder fades",
+      "filled": "Value visible, border returns to default",
+      "error": "Red border, error message below input",
+      "disabled": "Gray background, cursor not-allowed"
+    },
+    "card": {
+      "default": "White background with subtle shadow",
+      "hover": "Shadow increases, subtle scale transform (1.01)",
+      "loading": "Skeleton loader overlays card content",
+      "empty": "Empty state icon and message centered"
+    },
+    "table": {
+      "rowDefault": "White background with bottom border",
+      "rowHover": "Light gray background (#F9FAFB)",
+      "rowSelected": "Light orange background (#FFF7ED)",
+      "rowLoading": "Skeleton content in cells"
+    }
+  },
+  "responsiveBehaviors": {
+    "description": "Exact breakpoint behaviors for responsive design.",
+    "breakpoints": {
+      "mobile": {
+        "max": 639,
+        "layout": "Single column, stacked cards, collapsed sidebar"
+      },
+      "tablet": {
+        "min": 640,
+        "max": 1023,
+        "layout": "2-column grid, hamburger menu"
+      },
+      "desktop": {
+        "min": 1024,
+        "max": 1279,
+        "layout": "3-4 column grid, fixed sidebar"
+      },
+      "wide": { "min": 1280, "layout": "4 column grid, spacious layout" }
+    },
+    "sidebarBehavior": {
+      "mobile": "Overlay drawer, opens from left, backdrop blur",
+      "tablet": "Overlay drawer or condensed sidebar",
+      "desktop": "Fixed sidebar, always visible"
+    },
+    "cardBehavior": {
+      "mobile": "Full width cards, vertical stacking",
+      "tablet": "2 cards per row for metrics, 1 per row for charts",
+      "desktop": "4 metrics per row, 2-3 charts per row"
+    },
+    "tableBehavior": {
+      "mobile": "Horizontal scroll, sticky first column",
+      "tablet": "Full table visible, slightly condensed columns",
+      "desktop": "Full table with comfortable spacing"
+    }
+  },
+  "dataFormats": {
+    "description": "Standard formatting patterns for data display.",
+    "currency": {
+      "format": "$XXX,XXX",
+      "decimals": 0,
+      "example": "$983,410",
+      "negativeFormat": "($XXX,XXX)",
+      "compactFormat": "$1.2M for millions"
+    },
+    "numbers": {
+      "format": "XX,XXX",
+      "decimals": 0,
+      "example": "58,375",
+      "compactFormat": "2.7K for thousands"
+    },
+    "percentages": {
+      "format": "XX.X%",
+      "decimals": 1,
+      "example": "+8.39%",
+      "showSign": true,
+      "colorCode": "Green for positive, red for negative"
+    },
+    "dates": {
+      "short": "5-Aug",
+      "medium": "Aug 5",
+      "long": "August 5, 2025",
+      "time": "12:15 PM",
+      "relative": "2 hours ago"
+    }
+  },
+  "accessibilityDetails": {
+    "description": "WCAG 2.1 AA compliance specifications.",
+    "colorContrast": {
+      "textOnWhite": "Minimum 4.5:1 for body text (#111827 on #FFFFFF = 15.8:1)",
+      "secondaryTextOnWhite": "Minimum 4.5:1 (#6B7280 on #FFFFFF = 5.74:1)",
+      "primaryButtonText": "Minimum 4.5:1 (#FFFFFF on #FF8A1F = 4.52:1)"
+    },
+    "focusIndicators": {
+      "visible": true,
+      "style": "3px orange ring with 0.1 opacity",
+      "offset": "0px from element edge"
+    },
+    "keyboardNavigation": {
+      "tabOrder": "Logical flow: sidebar → header → cards → table",
+      "skipLink": "Skip to main content link at top",
+      "focusTrap": "Modal and dropdown focus trapped within"
+    },
+    "screenReader": {
+      "labels": "All form inputs have associated labels",
+      "altText": "All icons have aria-label attributes",
+      "liveRegions": "aria-live for dynamic content updates",
+      "landmarks": "Proper use of nav, main, aside elements"
+    },
+    "motionReduced": {
+      "transitions": "Disabled when prefers-reduced-motion is set",
+      "animations": "Chart animations reduced to instant display"
+    }
+  },
+  "externalLibraries": {
+    "description": "Recommended external libraries for implementing this design system with exact versions and usage.",
+    "charts": {
+      "primary": {
+        "name": "recharts",
+        "version": "^2.10.0",
+        "install": "pnpm add recharts",
+        "usage": "Line charts, area charts, bar charts, donut/pie charts",
+        "pros": "React-native, declarative API, highly customizable, good performance",
+        "config": {
+          "lineChart": {
+            "stroke": "#FF8A1F",
+            "strokeWidth": 2,
+            "dot": { "r": 4, "fill": "#FF8A1F" },
+            "activeDot": { "r": 6 },
+            "fill": "url(#colorGradient)",
+            "gradient": {
+              "id": "colorGradient",
+              "stops": [
+                { "offset": "0%", "stopColor": "#FF8A1F", "stopOpacity": 0.1 },
+                { "offset": "100%", "stopColor": "#FF8A1F", "stopOpacity": 0 }
+              ]
+            }
+          },
+          "pieChart": {
+            "innerRadius": "60%",
+            "outerRadius": "80%",
+            "paddingAngle": 2,
+            "colors": ["#FF8A1F", "#FB923C", "#FDBA74", "#FED7AA"]
+          }
+        }
+      },
+      "alternative": {
+        "name": "tremor",
+        "version": "^3.14.0",
+        "install": "pnpm add @tremor/react",
+        "usage": "Pre-styled analytics dashboard components",
+        "pros": "Built-in dashboard components, Tailwind-based, fast setup",
+        "customization": "Override with design.json colors via Tailwind config"
+      },
+      "lightweight": {
+        "name": "victory",
+        "version": "^37.0.0",
+        "install": "pnpm add victory",
+        "usage": "Alternative if bundle size is critical",
+        "pros": "Smaller bundle, modular, SVG-based"
+      }
+    },
+    "icons": {
+      "primary": {
+        "name": "lucide-react",
+        "version": "^0.294.0",
+        "install": "pnpm add lucide-react",
+        "usage": "All UI icons (navigation, buttons, cards, status)",
+        "pros": "1000+ icons, tree-shakeable, consistent stroke width, React-native",
+        "examples": {
+          "navigation": [
+            "LayoutDashboard",
+            "ShoppingBag",
+            "Package",
+            "Users",
+            "BarChart3",
+            "Settings"
+          ],
+          "metrics": [
+            "TrendingUp",
+            "TrendingDown",
+            "DollarSign",
+            "ShoppingCart",
+            "Truck",
+            "Package"
+          ],
+          "actions": [
+            "Search",
+            "Bell",
+            "MoreVertical",
+            "ChevronDown",
+            "Plus",
+            "X"
+          ],
+          "status": ["CheckCircle", "Clock", "AlertCircle", "XCircle"]
+        },
+        "config": {
+          "size": 18,
+          "strokeWidth": 2,
+          "color": "currentColor"
+        }
+      },
+      "alternative": {
+        "name": "react-icons",
+        "version": "^4.12.0",
+        "install": "pnpm add react-icons",
+        "usage": "If you need icons from multiple sets (Heroicons, Feather, etc.)",
+        "pros": "Multiple icon sets in one package"
+      }
+    },
+    "ui": {
+      "primary": {
+        "name": "shadcn/ui",
+        "version": "latest",
+        "install": "npx shadcn-ui@latest init",
+        "usage": "Base UI components (buttons, inputs, cards, badges, tables)",
+        "pros": "Copy-paste components, full control, Tailwind-based, accessible",
+        "components": [
+          "button",
+          "input",
+          "card",
+          "badge",
+          "table",
+          "dropdown-menu",
+          "dialog",
+          "popover",
+          "scroll-area",
+          "skeleton"
+        ],
+        "customization": {
+          "colors": "Update src/app/globals.css with design.json color palette",
+          "radius": "Set --radius to 0.875rem (14px)",
+          "components": "Override component styles to match design.json specs"
+        }
+      },
+      "forms": {
+        "name": "react-hook-form",
+        "version": "^7.49.0",
+        "install": "pnpm add react-hook-form",
+        "usage": "Form state management and validation",
+        "pros": "Performance, small bundle, easy validation"
+      },
+      "validation": {
+        "name": "zod",
+        "version": "^3.22.0",
+        "install": "pnpm add zod",
+        "usage": "Schema validation for forms and API responses",
+        "pros": "TypeScript-first, composable, great DX"
+      }
+    },
+    "tables": {
+      "primary": {
+        "name": "@tanstack/react-table",
+        "version": "^8.11.0",
+        "install": "pnpm add @tanstack/react-table",
+        "usage": "Data tables with sorting, filtering, pagination",
+        "pros": "Headless, fully customizable, excellent performance, TypeScript support",
+        "features": [
+          "sorting",
+          "filtering",
+          "pagination",
+          "row selection",
+          "column resizing"
+        ]
+      },
+      "virtualization": {
+        "name": "@tanstack/react-virtual",
+        "version": "^3.0.0",
+        "install": "pnpm add @tanstack/react-virtual",
+        "usage": "Virtual scrolling for tables with 1000+ rows",
+        "pros": "Smooth scrolling, minimal DOM nodes, 60fps performance"
+      }
+    },
+    "animation": {
+      "primary": {
+        "name": "framer-motion",
+        "version": "^10.16.0",
+        "install": "pnpm add framer-motion",
+        "usage": "Card hover effects, page transitions, loading animations",
+        "pros": "Declarative API, spring physics, gesture support",
+        "examples": {
+          "cardHover": {
+            "whileHover": {
+              "scale": 1.01,
+              "boxShadow": "0 8px 24px rgba(0,0,0,0.12)"
+            },
+            "transition": { "duration": 0.15, "ease": "easeOut" }
+          },
+          "fadeIn": {
+            "initial": { "opacity": 0, "y": 20 },
+            "animate": { "opacity": 1, "y": 0 },
+            "transition": { "duration": 0.2 }
+          }
+        }
+      },
+      "alternative": {
+        "name": "CSS transitions",
+        "usage": "For simple hover/focus states",
+        "implementation": "Use Tailwind transition utilities"
+      }
+    },
+    "datePicker": {
+      "primary": {
+        "name": "react-day-picker",
+        "version": "^8.10.0",
+        "install": "pnpm add react-day-picker",
+        "usage": "Date range selection for analytics filters",
+        "pros": "Lightweight, accessible, customizable with Tailwind"
+      }
+    },
+    "toasts": {
+      "primary": {
+        "name": "sonner",
+        "version": "^1.2.0",
+        "install": "pnpm add sonner",
+        "usage": "Success/error notifications",
+        "pros": "Beautiful defaults, promise-based, stacking animations",
+        "config": {
+          "position": "top-right",
+          "theme": "light",
+          "duration": 4000,
+          "style": {
+            "background": "#FFFFFF",
+            "border": "1px solid #E5E7EB",
+            "color": "#111827"
+          }
+        }
+      }
+    },
+    "utilities": {
+      "classNames": {
+        "name": "clsx",
+        "version": "^2.0.0",
+        "install": "pnpm add clsx",
+        "usage": "Conditional className concatenation",
+        "example": "clsx('btn', isActive && 'btn-active', className)"
+      },
+      "tailwindMerge": {
+        "name": "tailwind-merge",
+        "version": "^2.1.0",
+        "install": "pnpm add tailwind-merge",
+        "usage": "Merge Tailwind classes without conflicts",
+        "example": "twMerge('px-4 py-2', 'px-6') => 'px-6 py-2'"
+      },
+      "cn": {
+        "implementation": "export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))",
+        "usage": "Combine clsx and tailwind-merge for best DX"
+      }
+    },
+    "dataFetching": {
+      "primary": {
+        "name": "@tanstack/react-query",
+        "version": "^5.14.0",
+        "install": "pnpm add @tanstack/react-query",
+        "usage": "Server state management, caching, refetching",
+        "pros": "Automatic caching, background refetch, optimistic updates",
+        "config": {
+          "staleTime": 60000,
+          "cacheTime": 300000,
+          "refetchOnWindowFocus": true
+        }
+      }
+    },
+    "numberFormatting": {
+      "primary": {
+        "name": "numeral",
+        "version": "^2.0.6",
+        "install": "pnpm add numeral",
+        "usage": "Format currency, percentages, large numbers",
+        "examples": {
+          "currency": "numeral(983410).format('$0,0') => '$983,410'",
+          "compact": "numeral(1200000).format('$0.0a') => '$1.2M'",
+          "percentage": "numeral(0.0839).format('+0.00%') => '+8.39%'"
+        }
+      },
+      "alternative": {
+        "name": "Intl.NumberFormat (native)",
+        "usage": "Built-in browser API, zero dependencies",
+        "example": "new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(983410)"
+      }
+    },
+    "colorManipulation": {
+      "primary": {
+        "name": "tinycolor2",
+        "version": "^1.6.0",
+        "install": "pnpm add tinycolor2",
+        "usage": "Generate color shades, opacity variants, contrast checking",
+        "examples": {
+          "lighten": "tinycolor('#FF8A1F').lighten(10).toString() => '#FFB366'",
+          "darken": "tinycolor('#FF8A1F').darken(10).toString() => '#D96800'",
+          "alpha": "tinycolor('#FF8A1F').setAlpha(0.1).toString() => 'rgba(255,138,31,0.1)'"
+        }
+      }
+    }
+  },
+  "implementationNotes": {
+    "description": "Technical implementation guidelines for developers.",
+    "quickStart": {
+      "step1": "Install dependencies",
+      "commands": [
+        "pnpm add recharts lucide-react @tanstack/react-table @tanstack/react-query",
+        "pnpm add react-hook-form zod clsx tailwind-merge",
+        "pnpm add framer-motion sonner numeral",
+        "npx shadcn-ui@latest init",
+        "npx shadcn-ui@latest add button input card badge table"
+      ]
+    },
+    "cssVariables": {
+      "setup": "Define all colors, spacing, and radii as CSS custom properties",
+      "example": "--color-primary: #FF8A1F; --spacing-card-gap: 24px;",
+      "file": "src/app/globals.css",
+      "implementation": "/* In globals.css */\n:root {\n  --color-primary: #FF8A1F;\n  --color-canvas: #F5E7D8;\n  --spacing-card-gap: 24px;\n  --radius: 0.875rem;\n  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);\n}"
+    },
+    "tailwindConfig": {
+      "extend": {
+        "colors": "Add full primary palette and semantic colors",
+        "spacing": "Add custom spacing scale values",
+        "borderRadius": "Add custom radius values",
+        "boxShadow": "Add elevation shadows",
+        "fontFamily": "Add Geist Sans or system font stack"
+      },
+      "example": "// tailwind.config.ts\nexport default {\n  theme: {\n    extend: {\n      colors: {\n        canvas: '#F5E7D8',\n        primary: {\n          DEFAULT: '#FF8A1F',\n          50: '#FFF7ED',\n          // ... rest of palette\n        }\n      },\n      boxShadow: {\n        card: '0 4px 12px rgba(0, 0, 0, 0.08)'\n      }\n    }\n  }\n}"
+    },
+    "componentLibrary": {
+      "recommended": "shadcn/ui components aligned with this design system",
+      "customization": "Override shadcn defaults with design.json values"
+    },
+    "stateManagement": {
+      "loading": "Use React Suspense + skeleton screens",
+      "error": "Inline error messages with retry actions",
+      "empty": "Friendly empty states with call-to-action"
+    },
+    "performance": {
+      "lazyLoad": "Lazy load chart libraries and heavy components",
+      "virtualScroll": "Use @tanstack/react-virtual for large tables",
+      "memoization": "Memoize expensive calculations and chart data",
+      "codesplitting": "Split routes and large components"
+    },
+    "folderStructure": {
+      "recommended": "src/\n  components/\n    ui/          # shadcn components\n    charts/      # Recharts wrappers\n    cards/       # MetricCard, ChartCard, etc.\n    tables/      # DataTable with TanStack\n  lib/\n    utils.ts     # cn() function\n    format.ts    # Number formatting helpers\n  hooks/\n    useMetrics.ts # React Query hooks\n  app/\n    dashboard/   # Dashboard page\n    globals.css  # Design system CSS variables"
+    }
+  }
+}

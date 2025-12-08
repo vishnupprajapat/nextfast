@@ -1,6 +1,6 @@
-import { db } from "@/db";
 import { cookies } from "next/headers";
 import { z } from "zod";
+import { db } from "@/db";
 
 const cartSchema = z.array(
   z.object({

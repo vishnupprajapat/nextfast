@@ -1,8 +1,8 @@
-import { ProductLink } from "@/components/ui/product-card";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { AddToCartForm } from "@/components/add-to-cart-form";
-import { Metadata } from "next";
+import { ProductLink } from "@/components/ui/product-card";
 
 import { getProductDetails, getProductsForSubcategory } from "@/lib/queries";
 // import { db } from "@/db";
@@ -73,7 +73,7 @@ export default async function Page(props: {
 
   return (
     <div className="container p-4">
-      <h1 className="border-t-2 pt-1 text-xl font-bold text-accent1">
+      <h1 className="border-t-2 pt-1 font-bold text-accent1 text-xl">
         {productData.name}
       </h1>
       <div className="flex flex-col gap-2">
@@ -90,14 +90,14 @@ export default async function Page(props: {
           />
           <p className="flex-grow text-base">{productData.description}</p>
         </div>
-        <p className="text-xl font-bold">
-          ${parseFloat(productData.price).toFixed(2)}
+        <p className="font-bold text-xl">
+          ${Number.parseFloat(productData.price).toFixed(2)}
         </p>
         <AddToCartForm productSlug={productData.slug} />
       </div>
       <div className="pt-8">
         {related.length > 0 && (
-          <h2 className="text-lg font-bold text-accent1">
+          <h2 className="font-bold text-accent1 text-lg">
             Explore more products
           </h2>
         )}

@@ -1,7 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { parseHTML } from "linkedom";
-
-export const dynamic = "force-static";
+import { type NextRequest, NextResponse } from "next/server";
 
 function getHostname() {
   if (process.env.NODE_ENV === "development") {
@@ -15,14 +13,15 @@ function getHostname() {
 
 export async function GET(
   _: NextRequest,
-  { params }: { params: { rest: string[] } },
+  { params }: { params: Promise<{ rest: string[] }> },
 ) {
   const schema = process.env.NODE_ENV === "development" ? "http" : "https";
   const host = getHostname();
   if (!host) {
     return new Response("Failed to get hostname from env", { status: 500 });
   }
-  const href = (await params).rest.join("/");
+  const { rest } = await params;
+  const href = rest.join("/");
   if (!href) {
     return new Response("Missing url parameter", { status: 400 });
   }

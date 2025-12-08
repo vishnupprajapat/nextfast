@@ -1,0 +1,10 @@
+# Sentry Configuration
+.sentryclirc
+.env.sentry.local
+
+# Sentry source maps (these are uploaded, don't commit)
+.next/**/*.map
+*.map
+
+# Sentry debug files
+sentry-debug-*.txt

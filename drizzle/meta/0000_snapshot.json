@@ -55,12 +55,8 @@
           "name": "categories_collection_id_collections_id_fk",
           "tableFrom": "categories",
           "tableTo": "collections",
-          "columnsFrom": [
-            "collection_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["collection_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -191,12 +187,8 @@
           "name": "products_subcategory_slug_subcategories_slug_fk",
           "tableFrom": "products",
           "tableTo": "subcategories",
-          "columnsFrom": [
-            "subcategory_slug"
-          ],
-          "columnsTo": [
-            "slug"
-          ],
+          "columnsFrom": ["subcategory_slug"],
+          "columnsTo": ["slug"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -256,12 +248,8 @@
           "name": "subcategories_subcollection_id_subcollections_id_fk",
           "tableFrom": "subcategories",
           "tableTo": "subcollections",
-          "columnsFrom": [
-            "subcollection_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["subcollection_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -315,12 +303,8 @@
           "name": "subcollections_category_slug_categories_slug_fk",
           "tableFrom": "subcollections",
           "tableTo": "categories",
-          "columnsFrom": [
-            "category_slug"
-          ],
-          "columnsTo": [
-            "slug"
-          ],
+          "columnsFrom": ["category_slug"],
+          "columnsTo": ["slug"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -373,9 +357,7 @@
         "users_username_unique": {
           "name": "users_username_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "username"
-          ]
+          "columns": ["username"]
         }
       },
       "checkConstraints": {}

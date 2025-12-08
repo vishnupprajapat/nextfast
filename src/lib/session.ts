@@ -1,7 +1,7 @@
-import { NewUser } from "@/db/schema";
 import { compare, hash } from "bcryptjs";
-import { SignJWT, jwtVerify } from "jose";
+import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
+import type { NewUser } from "@/db/schema";
 
 const key = new TextEncoder().encode(process.env.AUTH_SECRET);
 const SALT_ROUNDS = 10;

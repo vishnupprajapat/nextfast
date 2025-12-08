@@ -1,5 +1,9 @@
+import { createOpenAI } from "@ai-sdk/openai";
+import { generateObject } from "ai";
+import { eq, isNull } from "drizzle-orm";
 import OpenAI from "openai";
 import slugify from "slugify";
+import { z } from "zod";
 import { db } from "../src/db";
 import {
   categories,
@@ -7,11 +11,8 @@ import {
   subcategories,
   subcollections,
 } from "../src/db/schema";
-import { eq, isNull } from "drizzle-orm";
-import { generateObject } from "ai";
-import { createOpenAI } from "@ai-sdk/openai";
-import { z } from "zod";
-const fs = require("fs");
+
+const fs = require("node:fs");
 
 const openai = new OpenAI();
 const client = createOpenAI();
@@ -40,7 +41,7 @@ const getCollections = async () => {
 };
 
 // generate 20 categories per each collection
-const generateCategories = async () => {
+const _generateCategories = async () => {
   const data = [] as any;
   const c = await getCollections();
 
@@ -76,7 +77,7 @@ const getCategories = async () => {
 };
 
 // generate 10 subcollections per each category
-const generateSubCollections = async () => {
+const _generateSubCollections = async () => {
   const data = [] as any;
   const c = await getCategories();
 
@@ -137,7 +138,7 @@ const getSubcollections = async () => {
   return result;
 };
 
-const generateSubcategories = async () => {
+const _generateSubcategories = async () => {
   const data = [] as any;
   const subcollections = (await getSubcollections()).map(
     (c) => c.subcollections,
@@ -206,7 +207,7 @@ Remember, ONLY RETURN THE JSON of 30 unique products and nothing else.
 MAKE SURE YOUR JSON IS VALID. ALL JSON MUST BE CORRECT.
 `;
 
-const generateBatchFile = async () => {
+const _generateBatchFile = async () => {
   const arr = await db.select().from(subcategories);
 
   arr.forEach((subcat) => {
@@ -223,7 +224,7 @@ const generateBatchFile = async () => {
 
     const line = `{"custom_id": "${custom_id}", "method": "${method}", "url": "${url}", "body": ${JSON.stringify(body)}}`;
 
-    fs.appendFile("scripts/req.jsonl", line + "\n", (err: any) => {
+    fs.appendFile("scripts/req.jsonl", `${line}\n`, (err: any) => {
       if (err) {
         console.error(err);
         return;
@@ -234,7 +235,7 @@ const generateBatchFile = async () => {
 
 // generateBatchFile();
 
-const uploadBatchFile = async () => {
+const _uploadBatchFile = async () => {
   const file = await openai.files.create({
     file: fs.createReadStream("scripts/req.jsonl"),
     purpose: "batch",
@@ -245,7 +246,7 @@ const uploadBatchFile = async () => {
 
 // uploadBatchFile();
 
-const createBatch = async () => {
+const _createBatch = async () => {
   const batch = await openai.batches.create({
     input_file_id: "",
     endpoint: "/v1/chat/completions",
@@ -257,14 +258,14 @@ const createBatch = async () => {
 
 // createBatch();
 
-const checkBatchStatus = async () => {
+const _checkBatchStatus = async () => {
   const batch = await openai.batches.retrieve("");
   console.log(batch);
 };
 
 // checkBatchStatus();
 
-const downloadBatch = async () => {
+const _downloadBatch = async () => {
   const fileResponse = await openai.files.content("");
   const fileContents = await fileResponse.text();
 

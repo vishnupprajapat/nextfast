@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductLink } from "@/components/ui/product-card";
-import type { Metadata } from "next";
 import {
   getProductsForSubcategory,
   getSubcategory,
@@ -70,7 +70,7 @@ export default async function Page(props: {
   return (
     <div className="container mx-auto p-4">
       {finalCount > 0 ? (
-        <h1 className="mb-2 border-b-2 text-sm font-bold">
+        <h1 className="mb-2 border-b-2 font-bold text-sm">
           {finalCount} {finalCount === 1 ? "Product" : "Products"}
         </h1>
       ) : (

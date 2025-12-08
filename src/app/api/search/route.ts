@@ -1,5 +1,5 @@
+import type { NextRequest } from "next/server";
 import { getSearchResults } from "@/lib/queries";
-import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   // format is /api/search?q=term

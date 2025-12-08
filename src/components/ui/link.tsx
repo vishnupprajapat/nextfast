@@ -78,7 +78,7 @@ export const Link: typeof NextLink = (({ children, ...props }) => {
         clearTimeout(prefetchTimeout);
       }
     };
-  }, [props.href, props.prefetch]);
+  }, [props.href, props.prefetch, prefetchTimeout, router.prefetch]);
 
   return (
     <NextLink

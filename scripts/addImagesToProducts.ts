@@ -1,16 +1,8 @@
+import { NodeRuntime } from "@effect/platform-node";
 import { eq, isNotNull, isNull } from "drizzle-orm";
+import { Array, Effect, Predicate, Random } from "effect";
 import { db } from "../src/db";
 import { categories, products, subcategories } from "../src/db/schema";
-import {
-  Effect,
-  Schedule,
-  Console,
-  Cause,
-  Array,
-  Predicate,
-  Random,
-} from "effect";
-import { NodeRuntime } from "@effect/platform-node";
 
 const main = Effect.gen(function* () {
   const categoryUrls = yield* Effect.tryPromise(() =>

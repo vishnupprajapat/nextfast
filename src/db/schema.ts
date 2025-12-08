@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import {
   index,
   integer,
@@ -9,7 +9,6 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
 
 export const collections = pgTable("collections", {
   id: serial("id").primaryKey(),
@@ -154,3 +153,16 @@ export const users = pgTable("users", {
 
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
+
+// Separate admin users table
+export const admins = pgTable("admins", {
+  id: serial("id").primaryKey(),
+  username: varchar("username", { length: 100 }).notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  email: varchar("email", { length: 255 }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export type Admin = typeof admins.$inferSelect;
+export type NewAdmin = typeof admins.$inferInsert;

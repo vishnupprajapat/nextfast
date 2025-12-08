@@ -1,9 +1,8 @@
 "use client";
-import { Link } from "@/components/ui/link";
-import NextImage from "next/image";
-import { getImageProps } from "next/image";
-import { Product } from "@/db/schema";
+import NextImage, { getImageProps } from "next/image";
 import { useEffect } from "react";
+import { Link } from "@/components/ui/link";
+import type { Product } from "@/db/schema";
 
 export function getProductLinkImageProps(
   imageUrl: string,
@@ -71,8 +70,8 @@ export function ProductLink(props: {
         />
       </div>
       <div className="px-2" />
-      <div className="h-26 flex flex-grow flex-col items-start py-2">
-        <div className="text-sm font-medium text-gray-700 group-hover:underline">
+      <div className="flex h-26 flex-grow flex-col items-start py-2">
+        <div className="font-medium text-gray-700 text-sm group-hover:underline">
           {product.name}
         </div>
         <p className="overflow-hidden text-xs">{product.description}</p>

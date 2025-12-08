@@ -1,12 +1,12 @@
 import { put } from "@vercel/blob";
-import { db } from "../src/db";
+import { eq } from "drizzle-orm";
 import { Effect, Schedule } from "effect";
+import { db } from "../src/db";
 import {
-  products as products_table,
   categories as categories_table,
+  products as products_table,
   subcategories as subcategories_table,
 } from "../src/db/schema";
-import { eq } from "drizzle-orm";
 
 const generateImage = (prompt: string) =>
   Effect.gen(function* () {

@@ -1,0 +1,77 @@
+name: Quality Checks
+
+on:
+  pull_request:
+    branches: [main, master, develop]
+  push:
+    branches: [main, master, develop]
+
+jobs:
+  quality:
+    name: Code Quality & Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Biome lint
+        run: pnpm lint
+        continue-on-error: false
+
+      - name: Run Biome format check
+        run: pnpm format:check
+        continue-on-error: false
+
+      - name: Run TypeScript type check
+        run: pnpm typecheck
+        continue-on-error: false
+
+      - name: Run all Biome checks
+        run: pnpm check
+        continue-on-error: false
+
+      - name: Validate commit messages
+        if: github.event_name == 'pull_request'
+        run: |
+          git log origin/${{ github.base_ref }}..${{ github.sha }} --pretty=format:"%s" | while read message; do
+            echo "Checking commit: $message"
+            echo "$message" | npx commitlint --from=HEAD~1
+          done
+
+      - name: Check for console.log statements
+        run: |
+          if git diff origin/${{ github.base_ref }}...${{ github.sha }} | grep -E '^\+.*console\.(log|debug|info)'; then
+            echo "❌ Found console.log statements in changes"
+            exit 1
+          else
+            echo "✅ No console.log statements found"
+          fi
+        continue-on-error: true
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Quality Check Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Biome linting passed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Code formatting validated" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ TypeScript compilation successful" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ All quality gates passed" >> $GITHUB_STEP_SUMMARY

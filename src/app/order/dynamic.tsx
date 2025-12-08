@@ -1,9 +1,9 @@
-import { cache } from "react";
-import { detailedCart } from "@/lib/cart";
-import { Link } from "@/components/ui/link";
-import Image from "next/image";
-import { removeFromCart } from "@/lib/actions";
 import { X } from "lucide-react";
+import Image from "next/image";
+import { cache } from "react";
+import { Link } from "@/components/ui/link";
+import { removeFromCart } from "@/lib/actions";
+import { detailedCart } from "@/lib/cart";
 
 const getCartItems = cache(() => detailedCart());
 type CartItem = Awaited<ReturnType<typeof getCartItems>>[number];
@@ -15,7 +15,7 @@ export async function CartItems() {
       {cart.length > 0 && (
         <div className="pb-4">
           <p className="font-semibold text-accent1">Delivers in 2-4 weeks</p>
-          <p className="text-sm text-gray-500">Need this sooner?</p>
+          <p className="text-gray-500 text-sm">Need this sooner?</p>
         </div>
       )}
       {cart.length > 0 ? (
@@ -37,7 +37,7 @@ function CartItem({ product }: { product: CartItem }) {
   // limit to 2 decimal places
   const cost = (Number(product.price) * product.quantity).toFixed(2);
   return (
-    <div className="flex flex-row items-center justify-between border-t border-gray-200 pt-4">
+    <div className="flex flex-row items-center justify-between border-gray-200 border-t pt-4">
       <Link
         prefetch={true}
         href={`/products/${product.subcategory.subcollection.category_slug}/${product.subcategory.slug}/${product.slug}`}
