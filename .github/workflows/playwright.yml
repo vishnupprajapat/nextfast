@@ -37,6 +37,29 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps chromium firefox webkit
 
+      - name: Build application
+        run: pnpm build
+        env:
+          SKIP_ENV_VALIDATION: true
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+          KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+
+      - name: Start application
+        run: pnpm start &
+        env:
+          PORT: 3000
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+          KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000 --timeout 60000
+
       - name: Run Playwright E2E tests
         run: pnpm test:e2e --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         env:
