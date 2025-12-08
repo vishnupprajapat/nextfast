@@ -128,6 +128,9 @@ jobs:
     if: always()
     needs: [test-e2e, test-component]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     
     steps:
       - name: Checkout code
