@@ -92,7 +92,7 @@ export default defineConfig({
     ? undefined
     : {
         command: "pnpm dev",
-        url: "http://localhost:3001",
+        url: "http://localhost:3000",
         reuseExistingServer: true,
         timeout: 120 * 1000,
         stdout: "ignore",

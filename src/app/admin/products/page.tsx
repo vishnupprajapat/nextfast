@@ -1,44 +1,15 @@
-import { count, desc } from "drizzle-orm";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { db } from "@/db";
-import { products } from "@/db/schema";
 import { getAdminUser } from "@/lib/admin-queries";
 import { ProductsTable } from "./products-table";
 
-export default async function ProductsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string; search?: string; status?: string }>;
-}) {
+export default async function ProductsPage() {
   const admin = await getAdminUser();
 
   if (!admin) {
     redirect("/admin/admin-auth");
   }
-
-  const params = await searchParams;
-  const page = Number.parseInt(params.page || "1", 10);
-  const limit = 10;
-  const offset = (page - 1) * limit;
-
-  // Get total count
-  const [{ total }] = await db.select({ total: count() }).from(products);
-
-  // Get paginated products
-  const productList = await db
-    .select()
-    .from(products)
-    .orderBy(desc(products.slug))
-    .limit(limit)
-    .offset(offset);
-
-  // Add product IDs for display
-  const enrichedProducts = productList.map((product, idx) => ({
-    ...product,
-    productId: `PRD-${String(offset + idx + 1).padStart(4, "0")}`,
-  }));
 
   return (
     <div className="min-h-screen bg-[#F5F6FA] p-8">
@@ -58,11 +29,7 @@ export default async function ProductsPage({
 
       {/* Main Content Card */}
       <div className="rounded-2xl bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
-        <ProductsTable
-          initialProducts={enrichedProducts}
-          initialPage={page}
-          totalProducts={total}
-        />
+        <ProductsTable />
       </div>
     </div>
   );
