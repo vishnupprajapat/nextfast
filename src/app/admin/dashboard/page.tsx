@@ -15,8 +15,8 @@ import {
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-[#F5E7D8]">
-      <div className="mx-auto max-w-[1440px] p-8">
+    <div className="min-h-screen p-8">
+      <div className="mx-auto max-w-[1440px]">
         <DashboardHeader />
 
         <div className="space-y-6">

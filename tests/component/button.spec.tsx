@@ -28,7 +28,7 @@ test.describe("Button Component", () => {
     expect(clicked).toBe(true);
   });
 
-  test("should render different variants", async ({ mount, page }) => {
+  test("should render different variants", async ({ mount }) => {
     const variants = [
       "default",
       "destructive",
@@ -47,7 +47,7 @@ test.describe("Button Component", () => {
     }
   });
 
-  test("should render different sizes", async ({ mount, page }) => {
+  test("should render different sizes", async ({ mount }) => {
     const sizes = ["default", "sm", "lg", "icon"];
 
     for (const size of sizes) {
@@ -64,7 +64,7 @@ test.describe("Button Component", () => {
     await expect(component).toBeDisabled();
   });
 
-  test("should render as child component", async ({ mount, page }) => {
+  test("should render as child component", async ({ mount }) => {
     const component = await mount(
       <Button asChild>
         <a href="/test">Link Button</a>
