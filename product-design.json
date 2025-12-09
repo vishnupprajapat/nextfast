@@ -1,0 +1,837 @@
+{
+  "meta": {
+    "designSystem": "EzMart Admin Products Page",
+    "version": "1.0.0",
+    "description": "Complete design system for admin products management interface with table-based layout",
+    "createdFor": "NextFast E-commerce Admin Panel",
+    "lastUpdated": "2025-12-09"
+  },
+  "foundations": {
+    "layout": {
+      "pageContainer": {
+        "maxWidth": "1440px",
+        "padding": "32px",
+        "background": "#F5F6FA",
+        "description": "Light grayish-blue background for entire page"
+      },
+      "contentCard": {
+        "background": "#FFFFFF",
+        "borderRadius": "16px",
+        "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.08)",
+        "padding": "24px",
+        "description": "White card container for main content"
+      },
+      "spacing": {
+        "unit": "4px",
+        "pageTopMargin": "0px",
+        "sectionGap": "24px",
+        "cardPadding": "24px",
+        "headerBottomMargin": "24px",
+        "description": "Consistent spacing based on 4px grid"
+      }
+    },
+    "colors": {
+      "canvas": {
+        "primary": "#F5F6FA",
+        "description": "Main page background - light grayish blue"
+      },
+      "surface": {
+        "primary": "#FFFFFF",
+        "secondary": "#F9FAFB",
+        "hover": "#F5F6FA",
+        "description": "Card backgrounds and surface colors"
+      },
+      "primary": {
+        "orange": "#FF6B2C",
+        "orangeLight": "#FFF4EF",
+        "orangeHover": "#FF5A1A",
+        "description": "Primary action color - vibrant orange"
+      },
+      "status": {
+        "inStock": "#E8F5F1",
+        "inStockText": "#0D9B6F",
+        "lowStock": "#FFF4EF",
+        "lowStockText": "#FF6B2C",
+        "outOfStock": "#F3F2FF",
+        "outOfStockText": "#7C6FDC",
+        "description": "Status badge colors with light backgrounds"
+      },
+      "text": {
+        "primary": "#1E293B",
+        "secondary": "#64748B",
+        "tertiary": "#94A3B8",
+        "muted": "#CBD5E1",
+        "description": "Text hierarchy from darkest to lightest"
+      },
+      "border": {
+        "default": "#E2E8F0",
+        "light": "#F1F5F9",
+        "focus": "#FF6B2C",
+        "description": "Border colors for inputs and dividers"
+      },
+      "interactive": {
+        "hoverBg": "#F9FAFB",
+        "activeBg": "#F1F5F9",
+        "focusRing": "#FF6B2C",
+        "description": "Interactive element states"
+      },
+      "rating": {
+        "star": "#FFC107",
+        "background": "#FFF9E6",
+        "description": "Star rating colors"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "primary": "-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
+        "mono": "'SF Mono', 'Consolas', 'Monaco', monospace",
+        "description": "System font stack for modern UI"
+      },
+      "fontSizes": {
+        "xs": "11px",
+        "sm": "13px",
+        "base": "14px",
+        "md": "15px",
+        "lg": "16px",
+        "xl": "18px",
+        "2xl": "20px",
+        "3xl": "24px",
+        "description": "Font size scale optimized for data tables"
+      },
+      "fontWeights": {
+        "normal": "400",
+        "medium": "500",
+        "semibold": "600",
+        "bold": "700",
+        "description": "Font weight scale"
+      },
+      "lineHeights": {
+        "tight": "1.25",
+        "normal": "1.5",
+        "relaxed": "1.75",
+        "description": "Line height options"
+      },
+      "letterSpacing": {
+        "tight": "-0.01em",
+        "normal": "0",
+        "wide": "0.02em",
+        "description": "Letter spacing for different contexts"
+      }
+    },
+    "spacing": {
+      "0": "0",
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "5": "20px",
+      "6": "24px",
+      "8": "32px",
+      "10": "40px",
+      "12": "48px",
+      "16": "64px",
+      "description": "Spacing scale based on 4px unit"
+    },
+    "radius": {
+      "sm": "6px",
+      "base": "8px",
+      "md": "10px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px",
+      "description": "Border radius scale from subtle to pill-shaped"
+    },
+    "shadows": {
+      "sm": "0 1px 2px rgba(0, 0, 0, 0.05)",
+      "base": "0 1px 3px rgba(0, 0, 0, 0.08)",
+      "md": "0 2px 6px rgba(0, 0, 0, 0.1)",
+      "lg": "0 4px 12px rgba(0, 0, 0, 0.12)",
+      "xl": "0 8px 24px rgba(0, 0, 0, 0.15)",
+      "description": "Subtle shadow system for depth"
+    },
+    "iconography": {
+      "size": {
+        "xs": "14px",
+        "sm": "16px",
+        "base": "18px",
+        "md": "20px",
+        "lg": "24px",
+        "xl": "32px"
+      },
+      "strokeWidth": "2px",
+      "style": "outline",
+      "color": {
+        "default": "#64748B",
+        "active": "#FF6B2C",
+        "muted": "#94A3B8"
+      },
+      "description": "Lucide icons with 2px stroke, outline style"
+    }
+  },
+  "components": {
+    "pageHeader": {
+      "structure": "Horizontal layout with title on left, action button on right",
+      "container": {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "alignItems": "center",
+        "marginBottom": "24px",
+        "paddingBottom": "0"
+      },
+      "title": {
+        "fontSize": "24px",
+        "fontWeight": "600",
+        "color": "#1E293B",
+        "lineHeight": "1.25"
+      },
+      "actionButton": {
+        "background": "#FF6B2C",
+        "color": "#FFFFFF",
+        "padding": "10px 20px",
+        "borderRadius": "8px",
+        "fontSize": "14px",
+        "fontWeight": "500",
+        "icon": "plus",
+        "iconSize": "18px",
+        "gap": "8px",
+        "hover": {
+          "background": "#FF5A1A",
+          "transform": "translateY(-1px)",
+          "boxShadow": "0 4px 12px rgba(255, 107, 44, 0.3)"
+        }
+      },
+      "description": "Clean header with title and primary action"
+    },
+    "filterToolbar": {
+      "structure": "Horizontal toolbar with filters and controls",
+      "container": {
+        "display": "flex",
+        "alignItems": "center",
+        "gap": "12px",
+        "marginBottom": "20px",
+        "flexWrap": "wrap"
+      },
+      "searchInput": {
+        "width": "280px",
+        "height": "40px",
+        "padding": "0 16px 0 40px",
+        "background": "#FFFFFF",
+        "border": "1px solid #E2E8F0",
+        "borderRadius": "8px",
+        "fontSize": "14px",
+        "color": "#1E293B",
+        "placeholder": "#94A3B8",
+        "iconLeft": "search",
+        "iconColor": "#94A3B8",
+        "iconSize": "18px",
+        "iconPosition": "12px from left",
+        "focus": {
+          "borderColor": "#FF6B2C",
+          "outline": "none",
+          "boxShadow": "0 0 0 3px rgba(255, 107, 44, 0.1)"
+        }
+      },
+      "dropdownFilter": {
+        "minWidth": "140px",
+        "height": "40px",
+        "padding": "0 16px",
+        "background": "#FFFFFF",
+        "border": "1px solid #E2E8F0",
+        "borderRadius": "8px",
+        "fontSize": "14px",
+        "color": "#1E293B",
+        "iconRight": "chevron-down",
+        "iconSize": "16px",
+        "gap": "8px",
+        "hover": {
+          "borderColor": "#CBD5E1",
+          "background": "#F9FAFB"
+        }
+      },
+      "utilityButtons": {
+        "display": "flex",
+        "gap": "12px",
+        "marginLeft": "auto"
+      },
+      "iconButton": {
+        "width": "40px",
+        "height": "40px",
+        "background": "#FFFFFF",
+        "border": "1px solid #E2E8F0",
+        "borderRadius": "8px",
+        "color": "#64748B",
+        "iconSize": "18px",
+        "hover": {
+          "background": "#F9FAFB",
+          "borderColor": "#CBD5E1",
+          "color": "#1E293B"
+        }
+      },
+      "description": "Comprehensive filtering system with search and dropdowns"
+    },
+    "dataTable": {
+      "structure": "Clean table with alternating row hover states",
+      "container": {
+        "width": "100%",
+        "background": "#FFFFFF",
+        "borderRadius": "12px",
+        "overflow": "hidden",
+        "border": "1px solid #E2E8F0"
+      },
+      "tableHead": {
+        "background": "#F9FAFB",
+        "borderBottom": "1px solid #E2E8F0"
+      },
+      "tableHeaderCell": {
+        "padding": "12px 16px",
+        "fontSize": "13px",
+        "fontWeight": "600",
+        "color": "#64748B",
+        "textTransform": "none",
+        "letterSpacing": "0",
+        "textAlign": "left",
+        "whiteSpace": "nowrap",
+        "sortable": {
+          "cursor": "pointer",
+          "icon": "arrows-sort",
+          "iconSize": "14px",
+          "iconColor": "#94A3B8",
+          "hover": {
+            "color": "#1E293B"
+          }
+        }
+      },
+      "tableRow": {
+        "borderBottom": "1px solid #F1F5F9",
+        "transition": "background-color 0.15s ease",
+        "hover": {
+          "background": "#F9FAFB"
+        }
+      },
+      "tableCell": {
+        "padding": "16px",
+        "fontSize": "14px",
+        "color": "#1E293B",
+        "verticalAlign": "middle"
+      },
+      "lastRow": {
+        "borderBottom": "none"
+      },
+      "description": "Modern data table with subtle hover effects"
+    },
+    "productCell": {
+      "structure": "Horizontal layout with image, name, and category",
+      "container": {
+        "display": "flex",
+        "alignItems": "center",
+        "gap": "12px"
+      },
+      "image": {
+        "width": "40px",
+        "height": "40px",
+        "borderRadius": "8px",
+        "objectFit": "cover",
+        "background": "#F1F5F9",
+        "border": "1px solid #E2E8F0"
+      },
+      "textContainer": {
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "2px"
+      },
+      "productName": {
+        "fontSize": "14px",
+        "fontWeight": "500",
+        "color": "#1E293B",
+        "lineHeight": "1.4"
+      },
+      "category": {
+        "fontSize": "13px",
+        "fontWeight": "400",
+        "color": "#64748B",
+        "lineHeight": "1.4"
+      },
+      "description": "Product info with thumbnail and two-line text"
+    },
+    "productIdCell": {
+      "fontSize": "13px",
+      "fontWeight": "500",
+      "color": "#64748B",
+      "fontFamily": "monospace",
+      "letterSpacing": "0.02em",
+      "description": "Monospace ID for technical reference"
+    },
+    "priceCell": {
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "color": "#1E293B",
+      "format": "$X.XX",
+      "description": "Bold price with dollar sign"
+    },
+    "ratingCell": {
+      "structure": "Star icon with rating number and review count",
+      "container": {
+        "display": "flex",
+        "alignItems": "center",
+        "gap": "6px"
+      },
+      "icon": {
+        "name": "star",
+        "size": "16px",
+        "color": "#FFC107",
+        "fill": "#FFC107"
+      },
+      "ratingText": {
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "color": "#1E293B"
+      },
+      "reviewCount": {
+        "fontSize": "13px",
+        "fontWeight": "400",
+        "color": "#94A3B8"
+      },
+      "description": "Visual rating with star icon and metrics"
+    },
+    "numericCell": {
+      "fontSize": "14px",
+      "fontWeight": "500",
+      "color": "#1E293B",
+      "textAlign": "left",
+      "description": "Standard numeric value"
+    },
+    "statusBadge": {
+      "structure": "Pill-shaped badge with background color",
+      "container": {
+        "display": "inline-flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "padding": "6px 12px",
+        "borderRadius": "9999px",
+        "fontSize": "13px",
+        "fontWeight": "500",
+        "whiteSpace": "nowrap"
+      },
+      "variants": {
+        "inStock": {
+          "background": "#E8F5F1",
+          "color": "#0D9B6F",
+          "text": "In Stock"
+        },
+        "lowStock": {
+          "background": "#FFF4EF",
+          "color": "#FF6B2C",
+          "text": "Low Stock"
+        },
+        "outOfStock": {
+          "background": "#F3F2FF",
+          "color": "#7C6FDC",
+          "text": "Out of Stock"
+        }
+      },
+      "description": "Color-coded status indicators with soft backgrounds"
+    },
+    "actionMenu": {
+      "trigger": {
+        "width": "32px",
+        "height": "32px",
+        "background": "transparent",
+        "border": "none",
+        "borderRadius": "6px",
+        "color": "#94A3B8",
+        "icon": "more-vertical",
+        "iconSize": "18px",
+        "cursor": "pointer",
+        "hover": {
+          "background": "#F1F5F9",
+          "color": "#64748B"
+        },
+        "active": {
+          "background": "#E2E8F0"
+        }
+      },
+      "dropdown": {
+        "minWidth": "160px",
+        "background": "#FFFFFF",
+        "border": "1px solid #E2E8F0",
+        "borderRadius": "8px",
+        "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.1)",
+        "padding": "4px",
+        "marginTop": "4px"
+      },
+      "menuItem": {
+        "padding": "10px 12px",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "color": "#1E293B",
+        "borderRadius": "6px",
+        "cursor": "pointer",
+        "display": "flex",
+        "alignItems": "center",
+        "gap": "10px",
+        "icon": {
+          "size": "16px",
+          "color": "#64748B"
+        },
+        "hover": {
+          "background": "#F9FAFB"
+        },
+        "destructive": {
+          "color": "#EF4444",
+          "iconColor": "#EF4444",
+          "hover": {
+            "background": "#FEF2F2"
+          }
+        }
+      },
+      "description": "Three-dot menu with dropdown actions"
+    },
+    "pagination": {
+      "structure": "Centered pagination controls at bottom",
+      "container": {
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "gap": "8px",
+        "marginTop": "24px",
+        "padding": "20px 0"
+      },
+      "button": {
+        "minWidth": "36px",
+        "height": "36px",
+        "padding": "0 12px",
+        "background": "#FFFFFF",
+        "border": "1px solid #E2E8F0",
+        "borderRadius": "8px",
+        "fontSize": "14px",
+        "fontWeight": "500",
+        "color": "#64748B",
+        "cursor": "pointer",
+        "transition": "all 0.15s ease",
+        "hover": {
+          "background": "#F9FAFB",
+          "borderColor": "#CBD5E1",
+          "color": "#1E293B"
+        },
+        "active": {
+          "background": "#FF6B2C",
+          "borderColor": "#FF6B2C",
+          "color": "#FFFFFF"
+        },
+        "disabled": {
+          "opacity": "0.4",
+          "cursor": "not-allowed",
+          "hover": {
+            "background": "#FFFFFF",
+            "borderColor": "#E2E8F0"
+          }
+        }
+      },
+      "ellipsis": {
+        "width": "36px",
+        "height": "36px",
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "color": "#94A3B8",
+        "fontSize": "14px"
+      },
+      "description": "Simple pagination with page numbers and navigation"
+    },
+    "emptyState": {
+      "container": {
+        "display": "flex",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "padding": "80px 40px",
+        "textAlign": "center"
+      },
+      "icon": {
+        "size": "64px",
+        "color": "#CBD5E1",
+        "marginBottom": "16px"
+      },
+      "title": {
+        "fontSize": "18px",
+        "fontWeight": "600",
+        "color": "#1E293B",
+        "marginBottom": "8px"
+      },
+      "description": {
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "color": "#64748B",
+        "maxWidth": "400px",
+        "marginBottom": "24px"
+      },
+      "action": {
+        "background": "#FF6B2C",
+        "color": "#FFFFFF",
+        "padding": "10px 20px",
+        "borderRadius": "8px",
+        "fontSize": "14px",
+        "fontWeight": "500"
+      },
+      "note": "Friendly empty state with call to action"
+    },
+    "loadingSkeleton": {
+      "baseColor": "#F1F5F9",
+      "shimmerColor": "#E2E8F0",
+      "animationDuration": "1.5s",
+      "borderRadius": "8px",
+      "rows": {
+        "height": "56px",
+        "gap": "1px"
+      },
+      "description": "Skeleton loader for table rows"
+    }
+  },
+  "patterns": {
+    "tableColumnWidths": {
+      "productName": "minWidth: 280px, flex: 1",
+      "productId": "width: 140px",
+      "price": "width: 100px",
+      "rating": "width: 140px",
+      "sales": "width: 100px",
+      "earnings": "width: 120px",
+      "stock": "width: 100px",
+      "status": "width: 140px",
+      "actions": "width: 60px",
+      "description": "Optimized column widths for data display"
+    },
+    "dataFormatting": {
+      "currency": "$X,XXX.XX",
+      "numbers": "X,XXX",
+      "rating": "X.X (XXX reviews)",
+      "productId": "XXX-XXXX",
+      "description": "Consistent data formatting patterns"
+    },
+    "interactiveStates": {
+      "default": "Base state with border",
+      "hover": "Lighter background, slightly darker border",
+      "focus": "Orange ring, orange border",
+      "active": "Pressed state with darker background",
+      "disabled": "40% opacity, no interaction",
+      "description": "Consistent interaction feedback"
+    },
+    "colorCoding": {
+      "positive": "#10B981 (green)",
+      "negative": "#EF4444 (red)",
+      "warning": "#F59E0B (amber)",
+      "info": "#3B82F6 (blue)",
+      "neutral": "#64748B (slate)",
+      "description": "Semantic color usage"
+    },
+    "responsiveBehavior": {
+      "desktop": "Full table with all columns",
+      "tablet": "Hide less critical columns (earnings, stock)",
+      "mobile": "Card-based layout instead of table",
+      "breakpoints": {
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px"
+      },
+      "description": "Adaptive layout for different screen sizes"
+    }
+  },
+  "principles": {
+    "designPhilosophy": {
+      "clarity": "Information hierarchy is clear with consistent typography and spacing",
+      "efficiency": "Dense data display optimized for scanning and quick actions",
+      "consistency": "Unified visual language across all table components",
+      "accessibility": "High contrast ratios, clear focus states, keyboard navigation",
+      "performance": "Lightweight design with minimal visual noise"
+    },
+    "visualHierarchy": {
+      "primary": "Product names and key metrics (prices, ratings)",
+      "secondary": "Supporting info (categories, IDs, stock counts)",
+      "tertiary": "Metadata (review counts, labels)",
+      "actions": "Subtle until needed, revealed on hover"
+    },
+    "whitespace": {
+      "principle": "Generous padding for breathing room",
+      "cellPadding": "16px vertical, 16px horizontal",
+      "rowGap": "Subtle 1px borders, no gaps",
+      "cardPadding": "24px all around",
+      "description": "Clean, uncluttered layout with proper spacing"
+    },
+    "colorUsage": {
+      "principle": "Minimal use of color for maximum impact",
+      "primary": "Orange for CTAs and focus states only",
+      "status": "Soft background colors for badges",
+      "text": "Grayscale hierarchy for most content",
+      "borders": "Extremely subtle, almost invisible",
+      "description": "Color draws attention where needed"
+    },
+    "typography": {
+      "principle": "System fonts for performance and familiarity",
+      "hierarchy": "Size and weight convey importance",
+      "readability": "14px base size for body text, adequate line height",
+      "monospace": "Technical data like IDs use monospace fonts",
+      "description": "Clear typographic hierarchy"
+    },
+    "interactions": {
+      "principle": "Immediate feedback for all interactions",
+      "hover": "Subtle background changes on rows and buttons",
+      "click": "Visual depression or state change",
+      "focus": "Clear orange ring for keyboard navigation",
+      "loading": "Skeleton states maintain layout",
+      "description": "Responsive and predictable interactions"
+    }
+  },
+  "accessibility": {
+    "colorContrast": {
+      "textOnWhite": "Minimum 4.5:1 ratio",
+      "textOnColor": "Minimum 4.5:1 ratio",
+      "iconContrast": "Minimum 3:1 ratio",
+      "description": "WCAG AA compliant contrast ratios"
+    },
+    "focusIndicators": {
+      "visible": "3px orange ring with slight offset",
+      "persistent": "Always visible during keyboard navigation",
+      "skipLinks": "Jump to main content available"
+    },
+    "semanticHTML": {
+      "tables": "Proper <table>, <thead>, <tbody>, <th> usage",
+      "buttons": "Real <button> elements, not divs",
+      "links": "Actual <a> tags with proper hrefs",
+      "labels": "Associated with form controls"
+    },
+    "keyboardNavigation": {
+      "tab": "Natural tab order through interactive elements",
+      "enter": "Activates buttons and opens dropdowns",
+      "escape": "Closes modals and dropdowns",
+      "arrows": "Navigate through table cells and menu items"
+    },
+    "screenReaders": {
+      "labels": "Descriptive aria-labels for icons",
+      "roles": "Proper ARIA roles for custom components",
+      "liveRegions": "Announce dynamic content changes",
+      "tableHeaders": "Proper scope attributes for data tables"
+    }
+  },
+  "microDetails": {
+    "transitions": {
+      "duration": "0.15s - 0.2s for most interactions",
+      "easing": "ease or ease-in-out",
+      "properties": "background-color, border-color, transform, opacity",
+      "description": "Subtle, fast transitions for polish"
+    },
+    "hoverEffects": {
+      "tableRows": "Background lightens to #F9FAFB",
+      "buttons": "Slight darkening and shadow increase",
+      "links": "Underline or color change",
+      "cards": "Shadow increases slightly"
+    },
+    "focusStates": {
+      "ring": "3px solid #FF6B2C with 2px offset",
+      "borderChange": "Border changes to orange",
+      "outline": "Never use default browser outline"
+    },
+    "loadingStates": {
+      "skeleton": "Shimmer animation from left to right",
+      "spinner": "Rotating circular icon",
+      "progress": "Linear bar when percentage known"
+    },
+    "errorStates": {
+      "inputError": "Red border, red text below",
+      "formError": "Red icon and message",
+      "toastError": "Red background notification"
+    }
+  },
+  "componentStates": {
+    "button": {
+      "default": "Solid background with border",
+      "hover": "Slightly darker, small shadow",
+      "active": "Pressed down appearance",
+      "disabled": "40% opacity, no pointer events",
+      "loading": "Spinner icon, disabled state"
+    },
+    "input": {
+      "default": "Light border, white background",
+      "hover": "Border slightly darker",
+      "focus": "Orange border, orange ring",
+      "error": "Red border, red text",
+      "disabled": "Gray background, muted text"
+    },
+    "table": {
+      "default": "White background, subtle borders",
+      "hover": "Row background lightens",
+      "selected": "Orange left border accent",
+      "empty": "Empty state illustration and CTA",
+      "loading": "Skeleton rows with shimmer"
+    },
+    "dropdown": {
+      "closed": "Chevron down, normal border",
+      "open": "Chevron up, dropdown visible, focus ring",
+      "hover": "Border darkens slightly",
+      "disabled": "Muted appearance"
+    },
+    "badge": {
+      "default": "Solid background, colored text",
+      "interactive": "Can be clickable with hover state",
+      "removable": "X icon appears on hover"
+    }
+  },
+  "dataFormats": {
+    "currency": {
+      "format": "$X,XXX.XX",
+      "decimalPlaces": 2,
+      "thousandsSeparator": ",",
+      "example": "$25,000.00"
+    },
+    "numbers": {
+      "format": "X,XXX",
+      "thousandsSeparator": ",",
+      "example": "1,284"
+    },
+    "rating": {
+      "format": "X.X",
+      "decimalPlaces": 1,
+      "icon": "Star (filled)",
+      "example": "4.8"
+    },
+    "reviewCount": {
+      "format": "(XXX reviews)",
+      "example": "(120 reviews)"
+    },
+    "productId": {
+      "format": "XXX-XXXX",
+      "style": "monospace",
+      "example": "CLJ-9023"
+    },
+    "percentage": {
+      "format": "XX%",
+      "example": "85%"
+    }
+  },
+  "implementationNotes": {
+    "framework": "Next.js 15+ with App Router",
+    "styling": "Tailwind CSS with custom design tokens",
+    "components": "Shadcn/ui or Radix UI primitives",
+    "icons": "Lucide React (outline style, 2px stroke)",
+    "table": "@tanstack/react-table for advanced features",
+    "dataFetching": "React Server Components with streaming",
+    "stateManagement": "URL state for filters, React state for UI",
+    "forms": "React Hook Form with Zod validation",
+    "notifications": "Sonner for toast messages",
+    "modals": "Radix Dialog with custom styling",
+    "tooltips": "Radix Tooltip for helper text",
+    "performance": {
+      "virtualization": "Use virtual scrolling for 1000+ rows",
+      "pagination": "Server-side pagination preferred",
+      "caching": "Cache table data with revalidation",
+      "optimisticUpdates": "Show immediate feedback before server response"
+    },
+    "bestPractices": {
+      "imageOptimization": "Use Next.js Image component",
+      "lazyLoading": "Lazy load off-screen content",
+      "prefetching": "Prefetch on hover for navigation",
+      "errorBoundaries": "Catch and display table errors gracefully",
+      "accessibility": "Test with keyboard and screen readers",
+      "mobileFirst": "Build mobile layout first, enhance for desktop"
+    }
+  }
+}

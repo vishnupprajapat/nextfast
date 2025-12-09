@@ -2,15 +2,17 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import type { Product, Subcategory } from "@/db/schema";
+import { useEffect, useState, useTransition } from "react";
+import type { Category, Product, Subcategory } from "@/db/schema";
 import { deleteProduct, saveProduct, uploadImage } from "./actions";
 
 export function ProductForm({
   product,
+  categories,
   subcategories,
 }: {
   product?: Product;
+  categories: Category[];
   subcategories: Subcategory[];
 }) {
   const router = useRouter();
@@ -20,6 +22,40 @@ export function ProductForm({
     product?.image_url || null,
   );
   const [uploading, setUploading] = useState(false);
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState<string>("");
+  const [categorySearch, setCategorySearch] = useState("");
+  const [subcategorySearch, setSubcategorySearch] = useState(
+    product
+      ? subcategories.find((s) => s.slug === product.subcategory_slug)?.name ||
+          ""
+      : "",
+  );
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
+  const [showSubcategoryDropdown, setShowSubcategoryDropdown] = useState(false);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(
+    product?.subcategory_slug || "",
+  );
+
+  const filteredCategories = categories.filter((cat) =>
+    cat.name.toLowerCase().includes(categorySearch.toLowerCase()),
+  );
+
+  const filteredSubcategories = subcategories.filter((subcat) =>
+    subcat.name.toLowerCase().includes(subcategorySearch.toLowerCase()),
+  );
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setShowCategoryDropdown(false);
+      setShowSubcategoryDropdown(false);
+    };
+
+    if (showCategoryDropdown || showSubcategoryDropdown) {
+      document.addEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
+    }
+  }, [showCategoryDropdown, showSubcategoryDropdown]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -179,27 +215,133 @@ export function ProductForm({
         />
       </div>
 
-      <div>
-        <label
-          htmlFor="subcategory_slug"
-          className="block font-medium text-gray-700 text-sm"
-        >
-          Subcategory
-        </label>
-        <select
-          name="subcategory_slug"
-          id="subcategory_slug"
-          required
-          defaultValue={product?.subcategory_slug}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-        >
-          <option value="">Select a subcategory</option>
-          {subcategories.map((subcat) => (
-            <option key={subcat.slug} value={subcat.slug}>
-              {subcat.name} ({subcat.slug})
-            </option>
-          ))}
-        </select>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="relative">
+          <label
+            htmlFor="category_search"
+            className="block font-medium text-gray-700 text-sm"
+          >
+            Category
+          </label>
+          <input
+            type="text"
+            id="category_search"
+            placeholder="Search categories..."
+            value={categorySearch}
+            onChange={(e) => {
+              setCategorySearch(e.target.value);
+              setShowCategoryDropdown(true);
+            }}
+            onFocus={() => setShowCategoryDropdown(true)}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+          />
+          <input
+            type="hidden"
+            name="category_slug"
+            value={selectedCategorySlug}
+          />
+          {showCategoryDropdown && filteredCategories.length > 0 && (
+            <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-white shadow-lg">
+              {filteredCategories.map((cat) => (
+                <button
+                  key={cat.slug}
+                  type="button"
+                  onClick={() => {
+                    setSelectedCategorySlug(cat.slug);
+                    setCategorySearch(cat.name);
+                    setShowCategoryDropdown(false);
+                  }}
+                  className="block w-full px-4 py-2 text-left text-sm hover:bg-blue-50"
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="relative">
+          <label
+            htmlFor="subcategory_search"
+            className="block font-medium text-gray-700 text-sm"
+          >
+            Subcategory
+          </label>
+          <input
+            type="text"
+            id="subcategory_search"
+            placeholder="Search subcategories..."
+            value={subcategorySearch}
+            onChange={(e) => {
+              setSubcategorySearch(e.target.value);
+              setShowSubcategoryDropdown(true);
+            }}
+            onFocus={() => setShowSubcategoryDropdown(true)}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+          />
+          <input
+            type="hidden"
+            name="subcategory_slug"
+            value={selectedSubcategory}
+            required
+          />
+          {showSubcategoryDropdown && filteredSubcategories.length > 0 && (
+            <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-white shadow-lg">
+              {filteredSubcategories.map((subcat) => (
+                <button
+                  key={subcat.slug}
+                  type="button"
+                  onClick={() => {
+                    setSelectedSubcategory(subcat.slug);
+                    setSubcategorySearch(subcat.name);
+                    setShowSubcategoryDropdown(false);
+                  }}
+                  className="block w-full px-4 py-2 text-left text-sm hover:bg-blue-50"
+                >
+                  {subcat.name} ({subcat.slug})
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label
+            htmlFor="stock"
+            className="block font-medium text-gray-700 text-sm"
+          >
+            Stock Quantity
+          </label>
+          <input
+            type="number"
+            name="stock"
+            id="stock"
+            min="0"
+            defaultValue={product?.stock || 0}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="status"
+            className="block font-medium text-gray-700 text-sm"
+          >
+            Status
+          </label>
+          <select
+            name="status"
+            id="status"
+            defaultValue={product?.status || "in"}
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+          >
+            <option value="in">In Stock</option>
+            <option value="low">Low Stock</option>
+            <option value="out">Out of Stock</option>
+          </select>
+        </div>
       </div>
 
       <div>

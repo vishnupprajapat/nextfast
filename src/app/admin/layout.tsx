@@ -16,11 +16,14 @@ export default async function AdminLayout({
 }) {
   const admin = await getAdminUser();
 
-  // If no admin, render without layout (for login page)
+  // If no admin and not on login page, the middleware will handle redirect
+  // This layout just renders appropriately for login vs authenticated pages
   if (!admin) {
+    // Render without sidebar for login page
     return <div className="min-h-screen bg-gray-50">{children}</div>;
   }
 
+  // Render with sidebar for authenticated pages
   return (
     <div className="flex min-h-screen bg-[#F5E7D8]">
       {/* Sidebar Navigation */}

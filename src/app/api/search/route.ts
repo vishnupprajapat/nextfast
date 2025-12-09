@@ -31,4 +31,10 @@ export type ProductSearchResult = {
   description: string;
   price: string;
   subcategory_slug: string;
+  rating: string | null;
+  reviews: number | null;
+  sales: number | null;
+  earnings: string | null;
+  stock: number | null;
+  status: string | null;
 }[];

@@ -18,6 +18,8 @@ export async function saveProduct(formData: FormData) {
     const subcategory_slug = formData.get("subcategory_slug") as string;
     const image_url = formData.get("image_url") as string;
     const original_slug = formData.get("original_slug") as string | null;
+    const stock = formData.get("stock") as string;
+    const status = formData.get("status") as string;
 
     // Validate required fields
     if (!name || !slug || !description || !price || !subcategory_slug) {
@@ -31,6 +33,8 @@ export async function saveProduct(formData: FormData) {
       price,
       subcategory_slug,
       image_url: image_url || null,
+      stock: stock ? Number.parseInt(stock, 10) : 0,
+      status: status || "in",
     };
 
     if (original_slug) {
