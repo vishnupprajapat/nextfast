@@ -12,39 +12,32 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import type { Product } from "@/db/schema";
 
 type EnrichedProduct = Product & {
   productId: string;
 };
 
-interface ProductsTableProps {
-  initialProducts: EnrichedProduct[];
-  initialPage: number;
-  totalProducts: number;
-}
-
-export function ProductsTable({
-  initialProducts,
-  initialPage,
-  totalProducts,
-}: ProductsTableProps) {
+export function ProductsTable() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
 
-  const [products, setProducts] = useState(initialProducts);
-  const [searchTerm, setSearchTerm] = useState(
-    searchParams.get("search") || "",
-  );
-  const [selectedStatus, setSelectedStatus] = useState(
-    searchParams.get("status") || "all",
-  );
-  const [currentPage, setCurrentPage] = useState(initialPage);
-  const [totalPages, setTotalPages] = useState(Math.ceil(totalProducts / 10));
+  const [products, setProducts] = useState<EnrichedProduct[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [openActionMenu, setOpenActionMenu] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
+
+  // Initialize from URL params - no local state
+  const urlSearch = searchParams.get("search") || "";
+  const urlStatus = searchParams.get("status") || "all";
+  const urlPage = searchParams.get("page") || "1";
+
+  // Local state only for input values (controlled inputs)
+  const [searchInput, setSearchInput] = useState(urlSearch);
+  const [statusInput, setStatusInput] = useState(urlStatus);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -58,70 +51,61 @@ export function ProductsTable({
     return () => document.removeEventListener("click", handleClickOutside);
   }, [openActionMenu]);
 
-  const handleSearch = useCallback(async () => {
-    setIsSearching(true);
-    const params = new URLSearchParams();
-    if (searchTerm) params.set("search", searchTerm);
-    if (selectedStatus !== "all") params.set("status", selectedStatus);
-    params.set("page", "1");
+  // Load products whenever URL params change
+  useEffect(() => {
+    const loadProducts = async () => {
+      setIsSearching(true);
+      const params = new URLSearchParams();
 
-    try {
-      const response = await fetch(
-        `/api/admin/products/search?${params.toString()}`,
-      );
-      const data = await response.json();
-      setProducts(data.products);
-      setCurrentPage(data.page);
-      setTotalPages(data.totalPages);
+      if (urlSearch) params.set("search", urlSearch);
+      if (urlStatus !== "all") params.set("status", urlStatus);
+      params.set("page", urlPage);
 
-      startTransition(() => {
-        router.push(`/admin/products?${params.toString()}`);
-      });
-    } catch (error) {
-      console.error("Search failed:", error);
-    } finally {
-      setIsSearching(false);
-    }
-  }, [searchTerm, selectedStatus, router]);
+      try {
+        const response = await fetch(
+          `/api/admin/products/search?${params.toString()}`,
+        );
+        const data = await response.json();
+        setProducts(data.products);
+        setCurrentPage(data.page);
+        setTotalPages(data.totalPages);
+      } catch (error) {
+        console.error("Failed to load products:", error);
+      } finally {
+        setIsSearching(false);
+      }
+    };
 
-  // Debounced search
+    loadProducts();
+  }, [urlSearch, urlStatus, urlPage]); // Only depend on URL params
+
+  // Debounced search - updates URL which triggers the load effect above
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (
-        searchTerm !== searchParams.get("search") ||
-        selectedStatus !== searchParams.get("status")
-      ) {
-        handleSearch();
+      if (searchInput !== urlSearch || statusInput !== urlStatus) {
+        const params = new URLSearchParams();
+        if (searchInput) params.set("search", searchInput);
+        if (statusInput !== "all") params.set("status", statusInput);
+        params.set("page", "1");
+
+        startTransition(() => {
+          router.push(`/admin/products?${params.toString()}`);
+        });
       }
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [searchTerm, selectedStatus, handleSearch, searchParams]);
+  }, [searchInput, statusInput, urlSearch, urlStatus, router]);
 
-  const handlePageChange = async (newPage: number) => {
-    setIsSearching(true);
+  const handlePageChange = (newPage: number) => {
     const params = new URLSearchParams();
-    if (searchTerm) params.set("search", searchTerm);
-    if (selectedStatus !== "all") params.set("status", selectedStatus);
+    if (urlSearch) params.set("search", urlSearch);
+    if (urlStatus !== "all") params.set("status", urlStatus);
     params.set("page", String(newPage));
 
-    try {
-      const response = await fetch(
-        `/api/admin/products/search?${params.toString()}`,
-      );
-      const data = await response.json();
-      setProducts(data.products);
-      setCurrentPage(data.page);
-      setTotalPages(data.totalPages);
-
-      startTransition(() => {
-        router.push(`/admin/products?${params.toString()}`);
-      });
-    } catch (error) {
-      console.error("Page change failed:", error);
-    } finally {
-      setIsSearching(false);
-    }
+    startTransition(() => {
+      router.push(`/admin/products?${params.toString()}`);
+    });
   };
 
   const handleDelete = (slug: string) => {
@@ -131,26 +115,13 @@ export function ProductsTable({
     }
   };
 
-  const handleClearFilters = async () => {
-    setSearchTerm("");
-    setSelectedStatus("all");
-    setIsSearching(true);
+  const handleClearFilters = () => {
+    setSearchInput("");
+    setStatusInput("all");
 
-    try {
-      const response = await fetch("/api/admin/products/search?page=1");
-      const data = await response.json();
-      setProducts(data.products);
-      setCurrentPage(data.page);
-      setTotalPages(data.totalPages);
-
-      startTransition(() => {
-        router.push("/admin/products");
-      });
-    } catch (error) {
-      console.error("Clear filters failed:", error);
-    } finally {
-      setIsSearching(false);
-    }
+    startTransition(() => {
+      router.push("/admin/products?page=1");
+    });
   };
 
   return (
@@ -162,8 +133,8 @@ export function ProductsTable({
           <input
             type="text"
             placeholder="Search products..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
             disabled={isSearching}
             className="h-10 w-[280px] rounded-lg border border-[#E2E8F0] bg-white py-0 pr-4 pl-10 text-[#1E293B] text-[14px] placeholder:text-[#94A3B8] focus:border-[#FF6B2C] focus:outline-none focus:ring-[#FF6B2C]/10 focus:ring-[3px] disabled:opacity-50"
           />
@@ -175,8 +146,8 @@ export function ProductsTable({
         </div>
 
         <select
-          value={selectedStatus}
-          onChange={(e) => setSelectedStatus(e.target.value)}
+          value={statusInput}
+          onChange={(e) => setStatusInput(e.target.value)}
           disabled={isSearching}
           className="flex h-10 min-w-[140px] rounded-lg border border-[#E2E8F0] bg-white px-4 text-[#1E293B] text-[14px] disabled:opacity-50"
         >
@@ -186,7 +157,7 @@ export function ProductsTable({
           <option value="out">Out of Stock</option>
         </select>
 
-        {(searchTerm || selectedStatus !== "all") && (
+        {(searchInput || statusInput !== "all") && (
           <button
             onClick={handleClearFilters}
             disabled={isSearching}
