@@ -85,6 +85,12 @@ export const products = pgTable(
       .notNull()
       .references(() => subcategories.slug, { onDelete: "cascade" }),
     image_url: text("image_url"),
+    rating: numeric("rating").default("0"),
+    reviews: integer("reviews").default(0),
+    sales: integer("sales").default(0),
+    earnings: numeric("earnings").default("0"),
+    stock: integer("stock").default(0),
+    status: text("status").default("in"),
   },
   (table) => ({
     nameSearchIndex: index("name_search_index").using(
